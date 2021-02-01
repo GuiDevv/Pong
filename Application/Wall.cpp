@@ -20,8 +20,20 @@ void Wall::Up()
 
 void Wall::Boost()
 {	
+	enableTimer();
 	if (x < xInicial + 50)
 		x = xInicial + 50;
+}
+
+void Wall::enableTimer()
+{
+	timer = 500;
+}
+
+void Wall::disableTimer()
+{
+	BoostReset();
+	timer = 0;
 }
 
 void Wall::BoostReset()

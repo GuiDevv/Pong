@@ -10,30 +10,37 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
-
-
 class Controllers
 {
 public:
-	class Gamemode* gm;
-	int type, timer = 0;
+	class Gamemode* gamemode;
+	int type;
 	Wall* controlledWall;
 	Ball* ball;
 
-	/*Controllers() {
-		ball = &gm->ball;
-	}
-	void setup(Gamemode *gm) {
-
-	}*/
-	void setType(int t);
+	virtual void setInfo();
+	virtual void tickController();
+	/*void setType(int t);
 	void setWall(Wall& wall);
 	void setBall(Ball& b);
 	void controllerPlayer();
 	void controllerIa();
-	void enableControllers();
-	void enableTimer();
-	void disableTimer();
+	void tickControllers();*/
 };
 
+class ControllerPlayer : public Controllers
+{
+public:
+
+	void setInfo();
+	void tickController();
+};
+
+class ControllerIa : public Controllers
+{
+public:
+
+	void setInfo();
+	void tickController();
+};
 #endif // !_controller

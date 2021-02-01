@@ -7,6 +7,13 @@ Gamemode::Gamemode()
 
 void Gamemode::loadInfo()
 {
+	wallPlayer.setInfo(0);
+	wallIa.setInfo(1);
+	ball.setInfo(400, 300);
+	wall1Area = IntRect(wallPlayer.x, wallPlayer.y, 54, 167);
+	wall2Area = IntRect(wallIa.x, wallIa.y, 54, 167);
+	ballArea = IntRect(ball.pos.getVector().x, ball.pos.getVector().y, 30, 34);
+
 	textures["wall1"].loadFromFile("Assets\\wall1.png");
 	textures["wall2"].loadFromFile("Assets\\wall2.png");
 	textures["ball"].loadFromFile("Assets\\ball.png");
@@ -15,21 +22,17 @@ void Gamemode::loadInfo()
 	sprites["spriteWall2"].setTexture(textures["wall2"]);
 	sprites["spriteBall"].setTexture(textures["ball"]);
 
-	fonts["font1"].loadFromFile("Assets\\impact-1.ttf");
+	controllers["Player"] = new ControllerPlayer;
+	controllers["Player"]->setInfo();
+	controllers["Ia"] = new ControllerIa;
+	controllers["Ia"]->setInfo();
+	/*controllers["Player"]->setType(0);
+	controllers["Player"]->setWall(wallPlayer);
+	controllers["Ia"]->setType(1);
+	controllers["Ia"]->setWall(wallIa);
+	controllers["Ia"]->setBall(ball);*/
 
-	wallPlayer.setInfo(0);
-	wallIa.setInfo(1);
-	ball.setInfo(400, 300);
-	wall1Area = IntRect(wallPlayer.x, wallPlayer.y, 54, 167);
-	wall2Area = IntRect(wallIa.x, wallIa.y, 54, 167);
-	ballArea = IntRect(ball.pos.getVector().x, ball.pos.getVector().y, 30, 34);
-
-	player1->setType(0);
-	player1->setWall(wallPlayer);
-	
-	player2->setType(1);
-	player2->setWall(wallIa);
-	player2->setBall(ball);
+	fonts["font1"].loadFromFile("Assets\\impact-1.ttf");	
 
 	text = Text("Pontuação: " + to_string(winsPlayer) + " | " + to_string(winsIa), fonts["font1"], 35);
 	text.setPosition(250, 0);
@@ -40,8 +43,7 @@ void Gamemode::loadInfo()
 }
 
 void Gamemode::drawAll(RenderWindow &window)
-{
-	
+{	
 	sprites["spriteWall1"].setPosition(wallPlayer.x, wallPlayer.y);
 	sprites["spriteWall2"].setPosition(wallIa.x, wallIa.y);
 	sprites["spriteBall"].setPosition(ball.pos.getVector().x, ball.pos.getVector().y);	
@@ -57,13 +59,11 @@ void Gamemode::drawAll(RenderWindow &window)
 
 void Gamemode::controlGame()
 {
-	//isso tem q ir para a Wall, o controller da o Input;
-	if (player2->timer > 0)
+	if (wallPlayer.timer > 0)
 	{
-		if (Delay(player2->timer))
-			player2->disableTimer();
+		if (Delay(wallPlayer.timer))
+			wallPlayer.disableTimer();
 	}
-	//
 
 	wall1Area.left = wallPlayer.x;
 	wall1Area.top = wallPlayer.y;
@@ -72,14 +72,11 @@ void Gamemode::controlGame()
 	ballArea.left = ball.pos.getVector().x;
 	ballArea.top = ball.pos.getVector().y;
 
-
-	//this need to be called tick, because it ticks
 	for (auto p : controllers) {
-		p.second->enableControllers();//THIS NEED TO BE CALLED TICK
+		p.second->tickController();
 	}
-	//
 	
-	ball.Bounce();	//THIS NEED TO BE CALLED TICK
+	ball.tickBall();
 
 	if (ball.pos.getVector().x > 800)
 		givePoints(0);
@@ -106,11 +103,6 @@ void Gamemode::controlGame()
 	{
 		trava = 0;
 	}
-	
-	//isso ta no controller
-	if pressedButton
-		wall.boost();
-
 
 	//if (winsPlayer > 0 && travaPower == false)
 	//{
@@ -128,7 +120,7 @@ void Gamemode::givePoints(int who)
 		winsIa++;
 	
 	wallPlayer.BoostReset();
-	//controllerPlayer.disableTimer(); VAI PARA A WALL
+	wallPlayer.disableTimer();
 	ball.BallReset();
 	ball.RandomSpeeds(Random(), Random());
 	trava = 0;

@@ -2,8 +2,6 @@
 #ifndef _gamemode
 #define _gamemode
 
-
-
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <ctime>
@@ -25,7 +23,6 @@ public:
 	map<string, Texture> textures;
 	map<string, Sprite> sprites;
 	map<string, Font> fonts;
-
 	map<string, Controllers*> controllers;	
 	Wall wallPlayer, wallIa;
 	Ball ball;

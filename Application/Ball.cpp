@@ -22,7 +22,7 @@ void Ball::testCollision(int i)
 	boost = i;
 }
 
-void Ball::Bounce()
+void Ball::tickBall()
 {
 	pos = pos + dir;	
 
