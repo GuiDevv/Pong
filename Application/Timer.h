@@ -1,4 +1,6 @@
 #include <SFML/System/Clock.hpp>
+#ifndef _timer
+#define _timer
 
 using namespace sf;
 
@@ -14,3 +16,5 @@ public:
 	float elapsedTimer() { return clock.getElapsedTime().asSeconds(); }
 	bool hasEnded() { return clock.getElapsedTime().asSeconds() > time; }
 };
+
+#endif // !_timer

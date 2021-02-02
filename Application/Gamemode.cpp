@@ -7,11 +7,11 @@ Gamemode::Gamemode()
 
 void Gamemode::loadInfo()
 {
-	wallPlayer.setInfo(0);
-	wallIa.setInfo(1);
+	wall1.setInfo(0);
+	wall2.setInfo(1);
 	ball.setInfo(400, 300);
-	wall1Area = IntRect(wallPlayer.x, wallPlayer.y, 54, 167);
-	wall2Area = IntRect(wallIa.x, wallIa.y, 54, 167);
+	wall1Area = IntRect(wall1.x, wall1.y, 54, 167);
+	wall2Area = IntRect(wall2.x, wall2.y, 54, 167);
 	ballArea = IntRect(ball.pos.getVector().x, ball.pos.getVector().y, 30, 34);
 
 	textures["wall1"].loadFromFile("Assets\\wall1.png");
@@ -22,31 +22,30 @@ void Gamemode::loadInfo()
 	sprites["spriteWall2"].setTexture(textures["wall2"]);
 	sprites["spriteBall"].setTexture(textures["ball"]);
 
-	controllers["Player"] = new ControllerPlayer;
-	controllers["Player"]->gamemode = this;
-	controllers["Player"]->setInfo();
-	controllers["Ia"] = new ControllerIa;
-	controllers["Ia"]->gamemode = this;
-	controllers["Ia"]->setInfo();
+	tradeMode("Singleplayer");
+	/*tradeMode("Multiplayer");*/
 
 	fonts["font1"].loadFromFile("Assets\\impact-1.ttf");	
 
+	ball.BallReset();
+	ball.RandomSpeeds(Random(), Random());
 	power = new PowerUp;
-	text = Text("Pontuação: " + to_string(winsPlayer) + " | " + to_string(winsIa), fonts["font1"], 35);
+	power2 = new PowerUp;
+	text = Text("Pontuação: " + to_string(winsPlayer1) + " | " + to_string(winsPlayer2), fonts["font1"], 35);
 	text.setPosition(250, 0);
 
-	winsPlayer = 0;
-	winsIa = 0;
+	winsPlayer1 = 0;
+	winsPlayer2 = 0;
 	trava = 0;	
 }
 
 void Gamemode::drawAll(RenderWindow &window)
 {	
-	sprites["spriteWall1"].setPosition(wallPlayer.x, wallPlayer.y);
-	sprites["spriteWall2"].setPosition(wallIa.x, wallIa.y);
+	sprites["spriteWall1"].setPosition(wall1.x, wall1.y);
+	sprites["spriteWall2"].setPosition(wall2.x, wall2.y);
 	sprites["spriteBall"].setPosition(ball.pos.getVector().x, ball.pos.getVector().y);	
 
-	text.setString("Pontuação: " + to_string(winsPlayer) + " | " + to_string(winsIa));
+	text.setString("Pontuação: " + to_string(winsPlayer1) + " | " + to_string(winsPlayer2));
 
 	window.draw(sprites["spriteWall1"]);
 	window.draw(sprites["spriteWall2"]);
@@ -58,26 +57,14 @@ void Gamemode::drawAll(RenderWindow &window)
 
 void Gamemode::controlGame()
 {
-	power->tickPower();
+	ticksControl();
 
-	if (wallPlayer.timer > 0)
-	{
-		if (Delay(wallPlayer.timer))
-			wallPlayer.disableTimer();
-	}
-
-	wall1Area.left = wallPlayer.x;
-	wall1Area.top = wallPlayer.y;
-	wall2Area.left = wallIa.x;
-	wall2Area.top = wallIa.y;
+	wall1Area.left = wall1.x;
+	wall1Area.top = wall1.y;
+	wall2Area.left = wall2.x;
+	wall2Area.top = wall2.y;
 	ballArea.left = ball.pos.getVector().x;
-	ballArea.top = ball.pos.getVector().y;
-
-	for (auto p : controllers) {
-		p.second->tickController();
-	}
-	
-	ball.tickBall();
+	ballArea.top = ball.pos.getVector().y;	
 
 	if (ball.pos.getVector().x > 800)
 		givePoints(0);
@@ -85,7 +72,7 @@ void Gamemode::controlGame()
 		givePoints(1);
 	if (ball.pos.getVector().x > 780)
 		trava = 1;
-	if (wall1Area.intersects(ballArea) && wallPlayer.x == 50 && trava == 0)
+	if (wall1Area.intersects(ballArea) && wall1.x == 50 && trava == 0)
 	{
 		ball.testCollision(2);
 		trava = 1;
@@ -93,6 +80,11 @@ void Gamemode::controlGame()
 	if (wall1Area.intersects(ballArea) && trava == 0)
 	{
 		ball.testCollision(0);
+		trava = 1;
+	}
+	if (wall2Area.intersects(ballArea) && wall2.x == 695 && trava == 0)
+	{
+		ball.testCollision(3);
 		trava = 1;
 	}
 	if (wall2Area.intersects(ballArea) && trava == 0)
@@ -105,26 +97,36 @@ void Gamemode::controlGame()
 		trava = 0;
 	}
 
-	if (winsPlayer % 5 == 0 && travaPower == false)
+	if (winsPlayer1 % 5 == 0 && travaPower == false && winsPlayer1 != 0)
 	{
 		tradePowerUp(0);
 		travaPower = true;
 	}
-	if (winsPlayer % 5 != 0 && travaPower == true)
+
+	if (winsPlayer2 % 5 == 0 && travaPower2 == false && winsPlayer2 != 0)
+	{
+		tradePowerUp(1);
+		travaPower2 = true;
+	}
+
+	if (winsPlayer1 % 5 != 0 && travaPower == true)
 	{
 		travaPower = false;
+	}
+	if (winsPlayer2 % 5 != 0 && travaPower2 == true)
+	{
+		travaPower2 = false;
 	}
 }
 
 void Gamemode::givePoints(int who)
 {
 	if (who == 0)
-		winsPlayer++;
+		winsPlayer1++;
 	if (who == 1)
-		winsIa++;
+		winsPlayer2++;
 	
-	wallPlayer.BoostReset();
-	wallPlayer.disableTimer();
+	wall1.BoostReset();
 	ball.BallReset();
 	ball.RandomSpeeds(Random(), Random());
 	trava = 0;
@@ -150,8 +152,13 @@ void Gamemode::tradePowerUp(int i)
 	if (i == 0)
 	{
 		power = new WallBoost;
-		power->ActivePowerUp(wallPlayer);		
-	}		
+		power->ActivePowerUp(wall1);		
+	}
+	if (i == 1)
+	{
+		power2 = new WallBoost;
+		power2->ActivePowerUp(wall2);
+	}
 
 }
 
@@ -161,4 +168,38 @@ float Gamemode::Random()
 	random = rand() % 10 + 1;
 	random = random / 10;
 	return random;
+}
+
+void Gamemode::tradeMode(string m)
+{
+	if (m == "Singleplayer")
+	{
+		controllers["Player"] = new ControllerPlayer(0);
+		controllers["Player"]->gamemode = this;
+		controllers["Player"]->setInfo(wall1);
+		controllers["Player2"] = new ControllerIa;
+		controllers["Player2"]->gamemode = this;
+		controllers["Player2"]->setInfo(wall2);
+	}
+	if (m == "Multiplayer")
+	{
+		controllers["Player"] = new ControllerPlayer(0);
+		controllers["Player"]->gamemode = this;
+		controllers["Player"]->setInfo(wall1);
+		controllers["Player2"] = new ControllerPlayer(1);
+		controllers["Player2"]->gamemode = this;
+		controllers["Player2"]->setInfo(wall2);
+	}
+}
+
+void Gamemode::ticksControl()
+{
+	power->tickPower();
+	power2->tickPower();
+	wall1.tickWall();
+	wall2.tickWall();
+	ball.tickBall();
+	for (auto p : controllers) {
+		p.second->tickController();
+	}	
 }

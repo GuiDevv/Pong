@@ -24,15 +24,15 @@ public:
 	map<string, Sprite> sprites;
 	map<string, Font> fonts;
 	map<string, Controllers*> controllers;	
-	Wall wallPlayer, wallIa;
+	Wall wall1, wall2;
 	Ball ball;
 	IntRect wall1Area, wall2Area, ballArea;
-	int winsPlayer, winsIa;
+	int winsPlayer1, winsPlayer2;
 	Text text;
 	bool trava;	
 	clock_t timer;
-	PowerUp* power;
-	bool travaPower = false;
+	PowerUp *power, *power2;
+	bool travaPower = false, travaPower2 = false;
 
 	void loadInfo();
 	void drawAll(RenderWindow &window);
@@ -41,6 +41,8 @@ public:
 	bool Delay(int timer);
 	void tradePowerUp(int i);
 	float Random();
+	void tradeMode(string m);
+	void ticksControl();
 
 };
 

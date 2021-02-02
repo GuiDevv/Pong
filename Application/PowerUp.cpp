@@ -1,5 +1,4 @@
 #include "PowerUp.h"
-#include <Windows.h>
 
 void PowerUp::ActivePowerUp(Wall& w)
 {
@@ -18,7 +17,7 @@ void WallBoost::ActivePowerUp(Wall& w)
 	time.start(30);	
 	activePow = true;
 	wall = &w;
-	speedBackup = wall->speedInicial;
+	speedBackup = wall->speed;
 	wall->speed = 0.3;
 }
 void WallBoost::RemovePowerUp()

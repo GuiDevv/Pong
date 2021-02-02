@@ -20,20 +20,12 @@ void Wall::Up()
 
 void Wall::Boost()
 {	
-	enableTimer();
-	if (x < xInicial + 50)
-		x = xInicial + 50;
-}
-
-void Wall::enableTimer()
-{
-	timer = 500;
-}
-
-void Wall::disableTimer()
-{
-	BoostReset();
-	timer = 0;
+	time.start(0.5);
+	activeBoost = true;
+	if (x < xInicial + boostValue)
+		x = xInicial + boostValue;
+	else if (x > xInicial + boostValue)
+		x = xInicial + boostValue;
 }
 
 void Wall::BoostReset()
@@ -57,10 +49,19 @@ void Wall::setInfo(int tipo)
 	{
 		xInicial = 745;
 		yInicial = 200;
-		speedInicial = 0.07;
+		speedInicial = 0.1/*0.07*/;
 		x = xInicial;
 		y = yInicial;
 		speed = speedInicial;
+	}
+}
+
+void Wall::tickWall()
+{
+	if (time.hasEnded() && activeBoost == true)
+	{
+		BoostReset();
+		activeBoost = false;
 	}
 }
 

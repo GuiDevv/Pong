@@ -18,14 +18,22 @@ public:
 	Wall* controlledWall;
 	Ball* ball;
 
-	virtual void setInfo();
+	virtual void setInfo(Wall& w);
 	virtual void tickController();
+};
+
+struct DataHolder {
+	sf::Keyboard::Key up, down, boost;
 };
 
 class ControllerPlayer : public Controllers{
 public:
 
-	void setInfo();
+	ControllerPlayer(int i);
+
+	DataHolder inputs;
+
+	void setInfo(Wall& w);
 	void tickController();
 };
 
@@ -33,7 +41,9 @@ class ControllerIa : public Controllers
 {
 public:
 
-	void setInfo();
+	void setInfo(Wall& w);
 	void tickController();
 };
+
+
 #endif // !_controller
