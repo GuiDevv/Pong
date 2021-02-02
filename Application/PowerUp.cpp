@@ -1,21 +1,37 @@
 #include "PowerUp.h"
 #include <Windows.h>
 
-void PowerUp::ActivePowerUp(Wall& wall)
+void PowerUp::ActivePowerUp(Wall& w)
 {
 }
 void PowerUp::RemovePowerUp()
 {
 }
 
-
-void WallBoost::ActivePowerUp(Wall& wall)
+void PowerUp::tickPower()
 {
-	Sleep(3000);
-	//speedBackup = wall->speedInicial;
-	//wall->speedInicial = 1;
+}
+
+
+void WallBoost::ActivePowerUp(Wall& w)
+{
+	time.start(5);	
+	activePow = true;
+	wall = &w;
+	speedBackup = wall->speedInicial;
+	wall->speed = 0.3;
 }
 void WallBoost::RemovePowerUp()
 {
 	wall->speedInicial = speedBackup;
+}
+
+void WallBoost::tickPower()
+{
+	if (time.hasEnded() && activePow == true)
+	{
+		RemovePowerUp();
+		activePow = false;
+	}
+		
 }

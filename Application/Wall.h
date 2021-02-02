@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/System/Clock.hpp>
 
 using namespace sf;
 
@@ -7,8 +8,9 @@ class Wall
 {
 public:
 	Wall();
-	
-	int timer = 0;
+	/*Clock time;
+	Time timer = time.restart();*/
+	int timer;
 	float x, y, speed, xInicial, yInicial, speedInicial;
 
 	void Down();

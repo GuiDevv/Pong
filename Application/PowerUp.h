@@ -1,12 +1,14 @@
 #pragma once
 #include "Wall.h"
+#include "Timer.h"
 
 class PowerUp {
 public:
 	Wall* wall;
 
-	virtual void ActivePowerUp(Wall& wall);
+	virtual void ActivePowerUp(Wall& w);
 	virtual void RemovePowerUp();
+	virtual void tickPower();
 
 };
 
@@ -14,26 +16,11 @@ class WallBoost : public PowerUp{
 public:
 
 	int speedBackup;
+	Timer time;
+	bool activePow;
 
-	void ActivePowerUp(Wall& wall);
+	void ActivePowerUp(Wall& w);
 	void RemovePowerUp();
+	void tickPower();
 
 };
-//
-//class PowerUp{
-//public:
-//
-//	virtual void ActivePowerUp();
-//	virtual void RemovePowerUp();
-//};
-//
-//
-//PowerUp *activePower = new WallBoost
-//
-//class WallBoost : public PowerUp
-//{
-//public:
-//
-//	void ActivePowerUp();
-//
-//};

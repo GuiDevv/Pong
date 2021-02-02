@@ -20,16 +20,9 @@ public:
 
 	virtual void setInfo();
 	virtual void tickController();
-	/*void setType(int t);
-	void setWall(Wall& wall);
-	void setBall(Ball& b);
-	void controllerPlayer();
-	void controllerIa();
-	void tickControllers();*/
 };
 
-class ControllerPlayer : public Controllers
-{
+class ControllerPlayer : public Controllers{
 public:
 
 	void setInfo();

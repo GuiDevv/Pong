@@ -168,6 +168,7 @@
     <ClCompile Include="Controllers.cpp" />
     <ClCompile Include="Gamemode.cpp" />
     <ClCompile Include="PowerUp.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
@@ -176,6 +177,7 @@
     <ClInclude Include="Controllers.h" />
     <ClInclude Include="Gamemode.h" />
     <ClInclude Include="PowerUp.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>

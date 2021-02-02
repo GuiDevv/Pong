@@ -8,6 +8,7 @@
     <ClCompile Include="PowerUp.cpp" />
     <ClCompile Include="Gamemode.cpp" />
     <ClCompile Include="Controllers.cpp" />
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Wall.h" />
@@ -16,5 +17,6 @@
     <ClInclude Include="PowerUp.h" />
     <ClInclude Include="Gamemode.h" />
     <ClInclude Include="Controllers.h" />
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
 </Project>

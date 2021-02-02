@@ -1,6 +1,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "Gamemode.h"
+#include <iostream>
 
 using namespace std;
 using namespace sf;

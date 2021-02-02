@@ -39,6 +39,7 @@ public:
 	void controlGame();
 	void givePoints(int who);
 	bool Delay(int timer);
+	void tradePowerUp(int i);
 	float Random();
 
 };

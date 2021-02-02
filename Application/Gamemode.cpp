@@ -23,17 +23,15 @@ void Gamemode::loadInfo()
 	sprites["spriteBall"].setTexture(textures["ball"]);
 
 	controllers["Player"] = new ControllerPlayer;
+	controllers["Player"]->gamemode = this;
 	controllers["Player"]->setInfo();
 	controllers["Ia"] = new ControllerIa;
+	controllers["Ia"]->gamemode = this;
 	controllers["Ia"]->setInfo();
-	/*controllers["Player"]->setType(0);
-	controllers["Player"]->setWall(wallPlayer);
-	controllers["Ia"]->setType(1);
-	controllers["Ia"]->setWall(wallIa);
-	controllers["Ia"]->setBall(ball);*/
 
 	fonts["font1"].loadFromFile("Assets\\impact-1.ttf");	
 
+	power = new PowerUp;
 	text = Text("Pontuação: " + to_string(winsPlayer) + " | " + to_string(winsIa), fonts["font1"], 35);
 	text.setPosition(250, 0);
 
@@ -57,8 +55,11 @@ void Gamemode::drawAll(RenderWindow &window)
 	
 }
 
+
 void Gamemode::controlGame()
 {
+	power->tickPower();
+
 	if (wallPlayer.timer > 0)
 	{
 		if (Delay(wallPlayer.timer))
@@ -139,6 +140,16 @@ bool Gamemode::Delay(int t)
 	}
 	else
 	return false;
+}
+
+void Gamemode::tradePowerUp(int i)
+{
+	if (i == 0)
+	{
+		power = new WallBoost;
+		power->ActivePowerUp(wallPlayer);		
+	}		
+
 }
 
 float Gamemode::Random()
