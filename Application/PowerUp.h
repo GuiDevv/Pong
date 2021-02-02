@@ -1,12 +1,12 @@
 #pragma once
-#include "Wall.h"
+#include "Players.h"
 #include "Timer.h"
 
 class PowerUp {
 public:
-	Wall* wall;
+	Players* wall;
 
-	virtual void ActivePowerUp(Wall& w);
+	virtual void ActivePowerUp(Players& w);
 	virtual void RemovePowerUp();
 	virtual void tickPower();
 
@@ -19,7 +19,7 @@ public:
 	Timer time;
 	bool activePow;
 
-	void ActivePowerUp(Wall& w);
+	void ActivePowerUp(Players& w);
 	void RemovePowerUp();
 	void tickPower();
 

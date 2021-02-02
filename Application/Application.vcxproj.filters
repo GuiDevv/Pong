@@ -2,21 +2,21 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
-    <ClCompile Include="Wall.cpp" />
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="PowerUp.cpp" />
     <ClCompile Include="Gamemode.cpp" />
     <ClCompile Include="Controllers.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Players.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Wall.h" />
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="PowerUp.h" />
     <ClInclude Include="Gamemode.h" />
     <ClInclude Include="Controllers.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Players.h" />
   </ItemGroup>
 </Project>

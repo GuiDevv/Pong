@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <ctime>
 #include <vector>
-#include "Wall.h"
+#include "Players.h"
 #include "Ball.h"
 #include <math.h>
 

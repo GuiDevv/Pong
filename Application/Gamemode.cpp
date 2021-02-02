@@ -198,7 +198,7 @@ void Gamemode::ticksControl()
 	power2->tickPower();
 	wall1.tickWall();
 	wall2.tickWall();
-	ball.tickBall();
+	/*ball.tickBall();*/
 	for (auto p : controllers) {
 		p.second->tickController();
 	}	

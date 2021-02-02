@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <ctime>
 #include <vector>
-#include "Wall.h"
+#include "Players.h"
 #include "Ball.h"
 #include <math.h>
 
@@ -26,7 +26,7 @@ void Ball::tickBall()
 {
 	pos = pos + dir;	
 
-	if (collision == true)
+	if (collision)
 	{
 		Boost();
 		dir.getVector().x *= -1;

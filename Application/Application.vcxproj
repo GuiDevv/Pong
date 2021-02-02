@@ -170,7 +170,7 @@
     <ClCompile Include="PowerUp.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Vector.cpp" />
-    <ClCompile Include="Wall.cpp" />
+    <ClCompile Include="Players.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
@@ -179,7 +179,7 @@
     <ClInclude Include="PowerUp.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Vector.h" />
-    <ClInclude Include="Wall.h" />
+    <ClInclude Include="Players.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

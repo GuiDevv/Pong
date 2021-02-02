@@ -1,6 +1,6 @@
 #include "PowerUp.h"
 
-void PowerUp::ActivePowerUp(Wall& w)
+void PowerUp::ActivePowerUp(Players& w)
 {
 }
 void PowerUp::RemovePowerUp()
@@ -12,7 +12,7 @@ void PowerUp::tickPower()
 }
 
 
-void WallBoost::ActivePowerUp(Wall& w)
+void WallBoost::ActivePowerUp(Players& w)
 {
 	time.start(30);	
 	activePow = true;

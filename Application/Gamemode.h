@@ -5,7 +5,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <ctime>
-#include "Wall.h"
+#include "Players.h"
 #include "Ball.h"
 #include "PowerUp.h"
 #include "Controllers.h"
@@ -24,7 +24,7 @@ public:
 	map<string, Sprite> sprites;
 	map<string, Font> fonts;
 	map<string, Controllers*> controllers;	
-	Wall wall1, wall2;
+	Players wall1, wall2;
 	Ball ball;
 	IntRect wall1Area, wall2Area, ballArea;
 	int winsPlayer1, winsPlayer2;

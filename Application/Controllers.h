@@ -2,7 +2,7 @@
 #ifndef _controller
 #define _controller
 
-#include "Wall.h"
+#include "Players.h"
 #include "Ball.h"
 #include "PowerUp.h"
 #include "Gamemode.h"
@@ -15,15 +15,15 @@ class Controllers
 public:
 	class Gamemode* gamemode;
 	int type;
-	Wall* controlledWall;
+	Players* controlledPlayer;
 	Ball* ball;
 
-	virtual void setInfo(Wall& w);
+	virtual void setInfo(Players& w);
 	virtual void tickController();
 };
 
 struct DataHolder {
-	sf::Keyboard::Key up, down, boost;
+	sf::Keyboard::Key up, down, left, right, boost;
 };
 
 class ControllerPlayer : public Controllers{
@@ -33,7 +33,7 @@ public:
 
 	DataHolder inputs;
 
-	void setInfo(Wall& w);
+	void setInfo(Players& w);
 	void tickController();
 };
 
@@ -41,7 +41,7 @@ class ControllerIa : public Controllers
 {
 public:
 
-	void setInfo(Wall& w);
+	void setInfo(Players& w);
 	void tickController();
 };
 

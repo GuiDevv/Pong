@@ -1,24 +1,40 @@
-#include "Wall.h"
+#include "Players.h"
 
 using namespace std;
 
-Wall::Wall()
+void Players::Down()
 {
+	if (team == 0 && y > 400)
+		y += speed;
+	if (team == 1 && y > 400)
+		y += speed;
 }
 
-void Wall::Down()
+void Players::Up()
 {
-	if (y < 430)
-	y += speed;
+	if (team == 0 && y > 400)
+		y -= speed;
+	if (team == 1 && y > 400)
+		y -= speed;
 }
 
-void Wall::Up()
+void Players::Left()
 {
-	if (y > 0)
-	y -= speed;
+	if (team == 0 && x < 700)
+		x -= speed;
+	if (team == 1 && x > 700)
+		x -= speed;
 }
 
-void Wall::Boost()
+void Players::Right()
+{
+	if (team == 0 && x < 700)
+		x += speed;
+	if (team == 1 && x > 700)
+		x += speed;
+}
+
+void Players::Boost()
 {	
 	time.start(0.5);
 	activeBoost = true;
@@ -28,12 +44,12 @@ void Wall::Boost()
 		x = xInicial + boostValue;
 }
 
-void Wall::BoostReset()
+void Players::BoostReset()
 {	
 	x = xInicial;
 }
 
-void Wall::setInfo(int tipo)
+void Players::setInfo(int tipo)
 {
 	if (tipo == 0) //Player
 	{
@@ -56,7 +72,7 @@ void Wall::setInfo(int tipo)
 	}
 }
 
-void Wall::tickWall()
+void Players::tickWall()
 {
 	if (time.hasEnded() && activeBoost == true)
 	{
