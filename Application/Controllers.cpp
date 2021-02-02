@@ -24,10 +24,10 @@ void ControllerPlayer::tickController()
 	{
 		controlledWall->Boost();
 	}
-	if (Keyboard::isKeyPressed(Keyboard::Q))
+	/*if (Keyboard::isKeyPressed(Keyboard::Q))
 	{
 		gamemode->tradePowerUp(0);
-	}
+	}*/
 }
 
 void ControllerIa::setInfo()

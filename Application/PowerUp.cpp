@@ -15,7 +15,7 @@ void PowerUp::tickPower()
 
 void WallBoost::ActivePowerUp(Wall& w)
 {
-	time.start(5);	
+	time.start(30);	
 	activePow = true;
 	wall = &w;
 	speedBackup = wall->speedInicial;
@@ -23,7 +23,7 @@ void WallBoost::ActivePowerUp(Wall& w)
 }
 void WallBoost::RemovePowerUp()
 {
-	wall->speedInicial = speedBackup;
+	wall->speed = speedBackup;
 }
 
 void WallBoost::tickPower()

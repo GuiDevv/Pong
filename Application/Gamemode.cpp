@@ -105,12 +105,15 @@ void Gamemode::controlGame()
 		trava = 0;
 	}
 
-	//if (winsPlayer > 0 && travaPower == false)
-	//{
-	//	power = new WallBoost;
-	//	power->ActivePowerUp(wallPlayer);
-	//	travaPower = true;
-	//}
+	if (winsPlayer % 5 == 0 && travaPower == false)
+	{
+		tradePowerUp(0);
+		travaPower = true;
+	}
+	if (winsPlayer % 5 != 0 && travaPower == true)
+	{
+		travaPower = false;
+	}
 }
 
 void Gamemode::givePoints(int who)

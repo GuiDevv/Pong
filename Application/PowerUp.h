@@ -15,7 +15,7 @@ public:
 class WallBoost : public PowerUp{
 public:
 
-	int speedBackup;
+	float speedBackup;
 	Timer time;
 	bool activePow;
 
