@@ -4,23 +4,23 @@ using namespace std;
 
 void Players::Down()
 {
-	if (team == 0 && y > 400)
+	if (team == 0 && y < 800)
 		y += speed;
-	if (team == 1 && y > 400)
+	if (team == 1 && y > 600)
 		y += speed;
 }
 
 void Players::Up()
 {
-	if (team == 0 && y > 400)
+	if (team == 0 && y > 0)
 		y -= speed;
-	if (team == 1 && y > 400)
+	if (team == 1 && y > 0)
 		y -= speed;
 }
 
 void Players::Left()
 {
-	if (team == 0 && x < 700)
+	if (team == 0 && x < 710 && x > 0)
 		x -= speed;
 	if (team == 1 && x > 700)
 		x -= speed;
@@ -34,20 +34,20 @@ void Players::Right()
 		x += speed;
 }
 
-void Players::Boost()
-{	
-	time.start(0.5);
-	activeBoost = true;
-	if (x < xInicial + boostValue)
-		x = xInicial + boostValue;
-	else if (x > xInicial + boostValue)
-		x = xInicial + boostValue;
-}
-
-void Players::BoostReset()
-{	
-	x = xInicial;
-}
+//void Players::Boost()
+//{	
+//	time.start(0.5);
+//	activeBoost = true;
+//	if (x < xInicial + boostValue)
+//		x = xInicial + boostValue;
+//	else if (x > xInicial + boostValue)
+//		x = xInicial + boostValue;
+//}
+//
+//void Players::BoostReset()
+//{	
+//	x = xInicial;
+//}
 
 void Players::setInfo(int tipo)
 {
@@ -72,13 +72,13 @@ void Players::setInfo(int tipo)
 	}
 }
 
-void Players::tickWall()
-{
-	if (time.hasEnded() && activeBoost == true)
-	{
-		BoostReset();
-		activeBoost = false;
-	}
-}
+//void Players::tickWall()
+//{
+//	if (time.hasEnded() && activeBoost == true)
+//	{
+//		BoostReset();
+//		activeBoost = false;
+//	}
+//}
 
 

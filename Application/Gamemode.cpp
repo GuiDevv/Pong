@@ -126,7 +126,7 @@ void Gamemode::givePoints(int who)
 	if (who == 1)
 		winsPlayer2++;
 	
-	wall1.BoostReset();
+	/*wall1.BoostReset();*/
 	ball.BallReset();
 	ball.RandomSpeeds(Random(), Random());
 	trava = 0;
@@ -196,8 +196,8 @@ void Gamemode::ticksControl()
 {
 	power->tickPower();
 	power2->tickPower();
-	wall1.tickWall();
-	wall2.tickWall();
+	/*wall1.tickWall();
+	wall2.tickWall();*/
 	/*ball.tickBall();*/
 	for (auto p : controllers) {
 		p.second->tickController();

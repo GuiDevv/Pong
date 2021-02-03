@@ -38,10 +38,10 @@ void ControllerPlayer::tickController()
 		controlledPlayer->Left();
 	if (Keyboard::isKeyPressed(inputs.right))
 		controlledPlayer->Right();
-	if (Keyboard::isKeyPressed(inputs.boost) && controlledPlayer->activeBoost == false) // Devolve a bola na mesma posição de Y
-	{
-		controlledPlayer->Boost();
-	}
+	//if (Keyboard::isKeyPressed(inputs.boost) && controlledPlayer->activeBoost == false) // Devolve a bola na mesma posição de Y
+	//{
+	//	controlledPlayer->Boost();
+	//}
 	//if (Keyboard::isKeyPressed(Keyboard::Q))
 	//{
 	//	gamemode->tradePowerUp(0);

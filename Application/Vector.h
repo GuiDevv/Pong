@@ -1,4 +1,7 @@
 #pragma once
+#ifndef _vector
+#define _vector
+
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <ctime>
@@ -57,3 +60,4 @@ public:
     }
 
 };
+#endif _vector

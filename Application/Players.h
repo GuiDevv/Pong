@@ -16,10 +16,10 @@ public:
 	void Up();
 	void Left();
 	void Right();
-	void Boost();
-	void BoostReset();
+	//void Boost();
+	//void BoostReset();
 	void setInfo(int tipo); // Tipo (0) - Player | Tipo (1) - IA
-	void tickWall();
+	/*void tickWall();*/
 	// Colocar o tick da wall e arrumar o timer
 
 };
