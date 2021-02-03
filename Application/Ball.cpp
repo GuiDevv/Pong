@@ -9,33 +9,31 @@
 
 Ball::Ball()
 {
-	dir.getVector().y = dir.getVector().x = .1;
+	dir.getVector().y = dir.getVector().x = 0;
 	pos.getVector().x = pos.getVector().y = 300;
-	aceY = 0.05;
-	aceX = 0.05;
 	collision = false;
 }
 
-void Ball::testCollision(int i)
+void Ball::testCollision(Vector v)
 {
-	collision = true;
-	boost = i;
+	dir = v;
 }
 
 void Ball::tickBall()
 {
 	pos = pos + dir;	
 
-	if (collision)
+	/*if (collision)
 	{
 		Boost();
 		dir.getVector().x *= -1;
 		collision = false;
-	}
-	
-	if (pos.getVector().y <= 0 || pos.getVector().y >= 600)
+	}*/
+
+	if (pos.getVector().y <= 0 || pos.getVector().y >= 800)
 	{
 		dir.getVector().y *= -1;
+		collision = true;
 	}
 
 }
@@ -49,6 +47,9 @@ void Ball::BallReset()
 {
 	pos.getVector().x = posIni.getVector().x;
 	pos.getVector().y = posIni.getVector().y;
+	dir.x = 0;
+	dir.y = 0;
+	collision = true;
 }
 
 void Ball::RandomSpeeds(float velocityX, float velocityY)
@@ -68,7 +69,7 @@ void Ball::RandomSpeeds(float velocityX, float velocityY)
 
 void Ball::Boost()
 {
-	if (boost == 0)
+	/*if (boost == 0)
 	{
 		dir.getVector().y -= (aceY / 3);
 		dir.getVector().x -= (aceX / 3);
@@ -93,5 +94,5 @@ void Ball::Boost()
 		dir.getVector().y *= -1;
 		dir.getVector().x += aceX;
 		boost = 4;
-	}
+	}*/
 }

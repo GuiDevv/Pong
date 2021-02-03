@@ -9,6 +9,7 @@
 #include "Ball.h"
 #include "PowerUp.h"
 #include "Controllers.h"
+#include "Collision.h"
 
 using namespace std;
 using namespace sf;
@@ -25,6 +26,7 @@ public:
 	map<string, Font> fonts;
 	map<string, Controllers*> controllers;	
 	Players wall1, wall2;
+	/*Collision* collisions;*/
 	Ball ball;
 	IntRect wall1Area, wall2Area, ballArea;
 	int winsPlayer1, winsPlayer2;

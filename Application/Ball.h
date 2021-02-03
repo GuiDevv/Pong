@@ -7,11 +7,11 @@ public:
 	Ball();
 
 	Vector pos, dir, posIni;
-	double aceY, aceX;
+	float speed;
 	bool collision;
 	int boost;
 
-	void testCollision(int i);
+	void testCollision(Vector v);
 	void tickBall();
 	void setInfo(float xInicial, float yInicial);
 	void BallReset();

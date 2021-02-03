@@ -9,6 +9,7 @@
     <ClCompile Include="Controllers.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Players.cpp" />
+    <ClCompile Include="Collision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
@@ -18,5 +19,6 @@
     <ClInclude Include="Controllers.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Players.h" />
+    <ClInclude Include="Collision.h" />
   </ItemGroup>
 </Project>
