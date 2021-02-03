@@ -1,6 +1,6 @@
 #pragma once
 #include "Timer.h"
-
+#include "Vector.h"
 using namespace sf;
 
 class Players
@@ -10,6 +10,7 @@ public:
 	Timer time;
 	int team = 0;
 	bool activeBoost;
+	
 	float x, y, speed, xInicial, yInicial, speedInicial, boostValue;
 
 	void Down();
