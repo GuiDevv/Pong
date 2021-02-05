@@ -23,12 +23,12 @@ class Gamemode
 public:
 	Gamemode();
 
+	class Collision* collisions;
 	map<string, Texture> textures;
 	map<string, Sprite> sprites;
 	map<string, Font> fonts;
 	map<string, Controllers*> controllers;	
 	Players wall1, wall2;
-	/*Collision* collisions;*/
 	Ball ball;
 	IntRect wall1Area, wall2Area, ballArea;
 	int winsPlayer1, winsPlayer2;
