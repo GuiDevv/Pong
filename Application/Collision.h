@@ -1,6 +1,7 @@
 #pragma once
+#ifndef _collision
+#define _collision
 #include "Gamemode.h"
-#include <SFML/Graphics.hpp>
 
 using namespace sf;
 
@@ -8,14 +9,15 @@ class Collision
 {
 public:
 
-	///*Gamemode* gm;*/
-	//int LimitUp, LimitDown;
-	//Ball* ball;
-	//Players *play1, *play2;
-	//IntRect* play1Area, * play2Area, * ballArea;
+	class Gamemode* gm;
+	int LimitUp, LimitDown;
+	Ball* ball;
+	Players *play1, *play2;
+	IntRect* play1Area, * play2Area, * ballArea;
 
-	//void setAll();
-	//void tickCollision();
+	void setAll();
+	void tickCollision();
 
 };
+#endif // !_collision
 

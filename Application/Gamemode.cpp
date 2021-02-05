@@ -10,11 +10,12 @@ void Gamemode::loadInfo()
 	wall1.setInfo(0);
 	wall2.setInfo(1);
 	ball.setInfo(400, 300);
-	wall1Area = IntRect(wall1.pos.x, wall1.pos.y, 30, 34); // Trocar Aqui
-	wall2Area = IntRect(wall2.pos.x, wall2.pos.y, 30, 34);
+	wall1Area = IntRect(wall1.pos.x, wall1.pos.y, 100, 106); // Trocar Aqui
+	wall2Area = IntRect(wall2.pos.x, wall2.pos.y, 100, 106);
 	ballArea = IntRect(ball.pos.getVector().x, ball.pos.getVector().y, 30, 34);
-	//collisions = new Collision;
-	//collisions->gm = this;
+	collisions = new Collision;
+	collisions->gm = this;
+	collisions->setAll();
 
 	textures["wall1"].loadFromFile("Assets\\skull1.png");
 	textures["wall2"].loadFromFile("Assets\\skull2.png");
@@ -75,7 +76,7 @@ void Gamemode::controlGame()
 	if (ball.pos.getVector().x > 780)
 		trava = 1;
 
-	if (wall1Area.intersects(ballArea) && ball.collision)
+	/*if (wall1Area.intersects(ballArea) && ball.collision)
 	{
 		if (wall1.dir.x != 0 || wall1.dir.y != 0)
 		{
@@ -83,7 +84,7 @@ void Gamemode::controlGame()
 			ball.collision = false;
 		}
 				
-	}
+	}*/
 	/*if (wall1Area.intersects(ballArea) && wall1.pos.x == 50 && trava == 0)
 	{
 		ball.testCollision(2);
@@ -206,6 +207,7 @@ void Gamemode::tradeMode(string m)
 
 void Gamemode::ticksControl()
 {
+	collisions->tickCollision();
 	power->tickPower();
 	power2->tickPower();
 	wall1.tickWall();
