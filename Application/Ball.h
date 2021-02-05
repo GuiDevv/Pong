@@ -8,6 +8,7 @@ public:
 
 	Vector pos, dir, posIni;
 	float speed;
+	double ace = 1.0007;
 	bool collision;
 	int boost;
 

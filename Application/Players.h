@@ -11,7 +11,7 @@ public:
 	int team = 0;
 	bool activeBoost;
 	Vector pos, posBackup, dir;
-	float speed, speedInicial, boostValue;
+	float speed, speedInicial, boostValue, limitDown, limitUp, limitLeft, limitRight;
 
 	void Down();
 	void Up();
@@ -19,7 +19,7 @@ public:
 	void Right();
 	void Boost();
 	void BoostReset();
-	void setInfo(int tipo); // Tipo (0) - Player | Tipo (1) - IA
+	void setInfo(int tipo, int t); // Tipo (0) - Player | Tipo (1) - IA
 	void tickWall();
 	// Colocar o tick da wall e arrumar o timer
 

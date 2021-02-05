@@ -10,6 +10,8 @@
 #include "PowerUp.h"
 #include "Controllers.h"
 #include "Collision.h"
+#include "Vector.h"
+#include <Windows.h>
 
 using namespace std;
 using namespace sf;

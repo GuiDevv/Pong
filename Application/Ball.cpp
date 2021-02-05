@@ -21,7 +21,10 @@ void Ball::testCollision(Vector v)
 
 void Ball::tickBall()
 {
-	pos = pos + dir;	
+	pos = pos + dir;
+
+	if (dir.x > 0 || dir.y >0)
+	dir = dir / ace; 
 
 	/*if (collision)
 	{

@@ -7,11 +7,11 @@ Gamemode::Gamemode()
 
 void Gamemode::loadInfo()
 {
-	wall1.setInfo(0);
-	wall2.setInfo(1);
+	wall1.setInfo(0, 0);
+	wall2.setInfo(1, 1);
 	ball.setInfo(400, 300);
-	wall1Area = IntRect(wall1.pos.x, wall1.pos.y, 30, 34); // Trocar Aqui
-	wall2Area = IntRect(wall2.pos.x, wall2.pos.y, 30, 34);
+	wall1Area = IntRect(wall1.pos.x, wall1.pos.y, 100, 104); // Trocar Aqui
+	wall2Area = IntRect(wall2.pos.x, wall2.pos.y, 100, 104);
 	ballArea = IntRect(ball.pos.getVector().x, ball.pos.getVector().y, 30, 34);
 	//collisions = new Collision;
 	//collisions->gm = this;
@@ -47,7 +47,8 @@ void Gamemode::drawAll(RenderWindow &window)
 	sprites["spriteWall2"].setPosition(wall2.pos.x, wall2.pos.y);
 	sprites["spriteBall"].setPosition(ball.pos.getVector().x, ball.pos.getVector().y);	
 
-	text.setString("Pontuação: " + to_string(winsPlayer1) + " | " + to_string(winsPlayer2));
+	//text.setString("Pontuação: " + to_string(winsPlayer1) + " | " + to_string(winsPlayer2));
+	text.setString("Bola Speed: " + to_string(ball.dir.x) + " | " + to_string(ball.dir.y));
 
 	window.draw(sprites["spriteWall1"]);
 	window.draw(sprites["spriteWall2"]);
@@ -75,39 +76,45 @@ void Gamemode::controlGame()
 	if (ball.pos.getVector().x > 780)
 		trava = 1;
 
-	if (wall1Area.intersects(ballArea) && ball.collision)
-	{
-		if (wall1.dir.x != 0 || wall1.dir.y != 0)
-		{
-			ball.testCollision(wall1.dir * (wall1.speed + 0.3));
-			ball.collision = false;
-		}
+	if (wall1Area.intersects(ballArea))
+	{		
+		ball.dir.getVector() = wall1.dir.getVector() + ball.dir.getVector();
+
+		if (ball.dir.y > 1)
+			ball.dir.y = 1;
+		if( ball.dir.y < -1)
+			ball.dir.y = -1;
+		if (ball.dir.x > 1)
+			ball.dir.x = 1;
+		if (ball.dir.x < -1)
+			ball.dir.x = -1;
+
+		if (wall2.activeBoost)
+			ball.ace = 1.0004;
+		else
+			ball.ace = 1.0007;
+
 				
 	}
-	/*if (wall1Area.intersects(ballArea) && wall1.pos.x == 50 && trava == 0)
+	if (wall2Area.intersects(ballArea))
 	{
-		ball.testCollision(2);
-		trava = 1;
+		ball.dir.getVector() = wall2.dir.getVector() + ball.dir.getVector();
+
+		if (ball.dir.y > 1)
+			ball.dir.y = 1;
+		if (ball.dir.y < -1)
+			ball.dir.y = -1;
+		if (ball.dir.x > 1)
+			ball.dir.x = 1;
+		if (ball.dir.x < -1)
+			ball.dir.x = -1;
+
+		if (wall2.activeBoost)
+			ball.ace = 1.0004;
+		else
+			ball.ace = 1.0007;	
+
 	}
-	if (wall1Area.intersects(ballArea) && trava == 0)
-	{
-		ball.testCollision(0);
-		trava = 1;
-	}
-	if (wall2Area.intersects(ballArea) && wall2.pos.x == 695 && trava == 0)
-	{
-		ball.testCollision(3);
-		trava = 1;
-	}
-	if (wall2Area.intersects(ballArea) && trava == 0)
-	{
-		ball.testCollision(1);
-		trava = 1;
-	}
-	if (ball.pos.getVector().x > 200 && ball.pos.getVector().x < 600 && trava == 1)
-	{
-		trava = 0;
-	}*/
 
 	if (winsPlayer1 % 5 == 0 && travaPower == false && winsPlayer1 != 0)
 	{
