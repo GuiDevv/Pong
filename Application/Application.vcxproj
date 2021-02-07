@@ -165,20 +165,20 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Ball.cpp" />
-    <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="CollisionSystem.cpp" />
     <ClCompile Include="Controllers.cpp" />
     <ClCompile Include="Gamemode.cpp" />
-    <ClCompile Include="PowerUp.cpp" />
+    <ClCompile Include="PlayersSkills.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="Players.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
-    <ClInclude Include="Collision.h" />
+    <ClInclude Include="CollisionSystem.h" />
     <ClInclude Include="Controllers.h" />
     <ClInclude Include="Gamemode.h" />
-    <ClInclude Include="PowerUp.h" />
+    <ClInclude Include="PlayersSkills.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Players.h" />

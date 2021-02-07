@@ -81,6 +81,12 @@ void Players::BoostReset()
 	speed = speedInicial;
 }
 
+void Players::UseSkill1()
+{
+	if (!activeSkill1)
+	activeSkill1 = true;
+}
+
 void Players::setInfo(int tipo, int t)
 {
 	team = t;
@@ -89,13 +95,13 @@ void Players::setInfo(int tipo, int t)
 	{
 		posBackup.getVector().x = 350;
 		posBackup.getVector().y = 350;
-		speedInicial = 0.1;
+		speedInicial = 0.25;
 		pos.x = posBackup.x;
 		pos.y = posBackup.y;
 		speed = speedInicial;
 		limitUp = 0;
 		limitDown = 700;
-		limitLeft = 0;
+		limitLeft = 75;
 		limitRight = 600;
 	}
 
@@ -103,14 +109,14 @@ void Players::setInfo(int tipo, int t)
 	{
 		posBackup.getVector().x = 1050;
 		posBackup.getVector().y = 350;
-		speedInicial = 0.1;
+		speedInicial = 0.25;
 		pos.x = posBackup.x;
 		pos.y = posBackup.y;
 		speed = speedInicial;
 		limitUp = 0;
 		limitDown = 700;
 		limitLeft = 700;
-		limitRight = 1300;
+		limitRight = 1225;
 	}
 }
 
@@ -121,7 +127,6 @@ void Players::tickWall()
 		BoostReset();
 		activeBoost = false;
 	}
-
 	dir.x = 0;
 	dir.y = 0;
 }

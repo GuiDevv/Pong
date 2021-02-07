@@ -7,14 +7,15 @@
 #include <ctime>
 #include "Players.h"
 #include "Ball.h"
-#include "PowerUp.h"
+#include "PlayersSkills.h"
 #include "Controllers.h"
-#include "Collision.h"
+#include "CollisionSystem.h"
 #include "Vector.h"
 #include <Windows.h>
 
 using namespace std;
 using namespace sf;
+
 
 class Controllers;
 
@@ -22,28 +23,26 @@ class Gamemode
 {
 public:
 	Gamemode();
-
-	class Collision* collisions;
+	class CollisionSystem* collisions;
 	map<string, Texture> textures;
 	map<string, Sprite> sprites;
 	map<string, Font> fonts;
 	map<string, Controllers*> controllers;	
-	Players wall1, wall2;
+	map<string, class PlayersSkills*> skills;
+	Players player1, player2;
 	Ball ball;
-	IntRect wall1Area, wall2Area, ballArea;
+	IntRect player1Area, player2Area, ballArea, wall1Area, wall2Area, wall3Area, wall4Area;
 	int winsPlayer1, winsPlayer2;
 	Text text;
 	bool trava;	
 	clock_t timer;
-	PowerUp *power, *power2;
-	bool travaPower = false, travaPower2 = false;
+	bool travaPower = false, travaPower2 = false, P1lockSkill1 = true, P2lockSkill1 = true, P1lockSkill2 = true, P2lockSkill2 = true, P1lockSkill3 = true, P2lockSkill3 = true;
 
 	void loadInfo();
 	void drawAll(RenderWindow &window);
 	void controlGame();
 	void givePoints(int who);
 	bool Delay(int timer);
-	void tradePowerUp(int i);
 	float Random();
 	void tradeMode(string m);
 	void ticksControl();

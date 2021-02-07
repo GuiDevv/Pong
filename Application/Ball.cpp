@@ -22,8 +22,6 @@ void Ball::testCollision(Vector v)
 void Ball::tickBall()
 {
 	pos = pos + dir;
-
-	if (dir.x > 0 || dir.y >0)
 	dir = dir / ace; 
 
 	/*if (collision)
@@ -33,11 +31,11 @@ void Ball::tickBall()
 		collision = false;
 	}*/
 
-	if (pos.getVector().y <= 0 || pos.getVector().y >= 800)
+	/*if (pos.getVector().y <= 0 || pos.getVector().y >= 800)
 	{
 		dir.getVector().y *= -1;
 		collision = true;
-	}
+	}*/
 
 }
 
@@ -50,6 +48,7 @@ void Ball::BallReset()
 {
 	pos.getVector().x = posIni.getVector().x;
 	pos.getVector().y = posIni.getVector().y;
+	color = 1;
 	dir.x = 0;
 	dir.y = 0;
 	collision = true;

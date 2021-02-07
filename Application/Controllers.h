@@ -4,7 +4,7 @@
 
 #include "Players.h"
 #include "Ball.h"
-#include "PowerUp.h"
+#include "PlayersSkills.h"
 #include "Gamemode.h"
 #include <ctime>
 #include <SFML/Audio.hpp>
@@ -17,13 +17,14 @@ public:
 	int type;
 	Players* controlledPlayer;
 	Ball* ball;
+	bool enable = true, cooldown = false;
 
 	virtual void setInfo(Players& w);
 	virtual void tickController();
 };
 
 struct DataHolder {
-	sf::Keyboard::Key up, down, left, right, boost;
+	sf::Keyboard::Key up, down, left, right, boost, skill1, skill2, skill3;
 };
 
 class ControllerPlayer : public Controllers{
