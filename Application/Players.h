@@ -21,10 +21,10 @@ public:
 	void Boost();
 	void BoostReset();
 	void UseSkill1();
-	/*void UseSkill2();
-	void UseSkill3();*/
+	void UseSkill2();
+	void UseSkill3();
 	void setInfo(int tipo, int t); // Tipo (0) - Player | Tipo (1) - IA
 	void tickWall();
-	// Colocar o tick da wall e arrumar o timer
+
 
 };

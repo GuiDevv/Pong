@@ -18,6 +18,8 @@ void Gamemode::loadInfo()
 	wall3Area = IntRect(1320, 0, 80, 273);
 	wall4Area = IntRect(1320, 530, 80, 273);
 	ballArea = IntRect(ball.pos.getVector().x, ball.pos.getVector().y, 30, 34);
+	SpectralBone1 = IntRect(0, 277, 80, 250);
+	SpectralBone2 = IntRect(1320, 277, 80, 250);
 	collisions = new CollisionSystem;
 	collisions->gm = this;
 	collisions->setAll();
@@ -35,6 +37,17 @@ void Gamemode::loadInfo()
 	textures["player2PerfectShoot"].loadFromFile("Assets\\skull2PerfectShoot.png");
 	textures["player1Vortex"].loadFromFile("Assets\\skull1Vortex.png");
 	textures["player2Vortex"].loadFromFile("Assets\\skull2Vortex.png");
+	textures["iconPlayer1Frozen"].loadFromFile("Assets\\skill1Blue.png");
+	textures["iconPlayer2Frozen"].loadFromFile("Assets\\skill1Red.png");
+	textures["iconDisableFrozen"].loadFromFile("Assets\\skill1Disable.png");
+	textures["iconPlayer1PerfectShoot"].loadFromFile("Assets\\skill2Blue.png");
+	textures["iconPlayer2PerfectShoot"].loadFromFile("Assets\\skill2Red.png");
+	textures["iconDisablePerfectShoot"].loadFromFile("Assets\\skill2Disable.png");
+	textures["iconPlayer1Vortex"].loadFromFile("Assets\\skill3Blue.png");
+	textures["iconPlayer2Vortex"].loadFromFile("Assets\\skill3Red.png");
+	textures["iconDisableVortex"].loadFromFile("Assets\\skill3Disable.png");
+	textures["spectralBone1"].loadFromFile("Assets\\spectralBone1.png");
+	textures["spectralBone2"].loadFromFile("Assets\\spectralBone2.png");
 
 	sprites["spritePlayer1"].setTexture(textures["player1"]);
 	sprites["spritePlayer2"].setTexture(textures["player2"]);
@@ -51,6 +64,17 @@ void Gamemode::loadInfo()
 	sprites["spriteWall3"].setTexture(textures["wall2"]);
 	sprites["spriteWall4"].setTexture(textures["wall2"]);
 	sprites["spriteBall"].setTexture(textures["ball1"]);
+	sprites["skill1Icon1"].setTexture(textures["iconPlayer1Frozen"]);
+	sprites["skill1Icon2"].setTexture(textures["iconPlayer2Frozen"]);
+	sprites["skill1Icon3"].setTexture(textures["iconDisableFrozen"]);
+	sprites["skill2Icon1"].setTexture(textures["iconPlayer1PerfectShoot"]);
+	sprites["skill2Icon2"].setTexture(textures["iconPlayer2PerfectShoot"]);
+	sprites["skill2Icon3"].setTexture(textures["iconDisablePerfectShoot"]);
+	sprites["skill3Icon1"].setTexture(textures["iconPlayer1Vortex"]);
+	sprites["skill3Icon2"].setTexture(textures["iconPlayer2Vortex"]);
+	sprites["skill3Icon3"].setTexture(textures["iconDisableVortex"]);
+	sprites["spriteBone1"].setTexture(textures["spectralBone1"]);
+	sprites["spriteBone2"].setTexture(textures["spectralBone2"]);
 
 	/*tradeMode("Singleplayer");*/
 	tradeMode("Multiplayer");
@@ -60,7 +84,7 @@ void Gamemode::loadInfo()
 	ball.BallReset();
 	ball.RandomSpeeds(Random(), Random());
 	text = Text("Pontuação: " + to_string(winsPlayer1) + " | " + to_string(winsPlayer2), fonts["font1"], 35);
-	text.setPosition(250, 0);
+	text.setPosition(580, 0);
 
 	winsPlayer1 = 0;
 	winsPlayer2 = 0;
@@ -75,10 +99,18 @@ void Gamemode::drawAll(RenderWindow &window)
 	sprites["spriteWall2"].setPosition(0, 530);
 	sprites["spriteWall3"].setPosition(1320, 0);
 	sprites["spriteWall4"].setPosition(1320, 530);
-	sprites["spriteBall"].setPosition(ball.pos.getVector().x, ball.pos.getVector().y);	
+	sprites["spriteBall"].setPosition(ball.pos.getVector().x, ball.pos.getVector().y);
+	sprites["spriteBone1"].setPosition(0, 277);
+	sprites["spriteBone2"].setPosition(1320, 277);
 
-	//text.setString("Pontuação: " + to_string(winsPlayer1) + " | " + to_string(winsPlayer2));
-	text.setString("Bola Speed: " + to_string(winsPlayer1) + " | " + to_string(controllers["Player1"]->enable));
+	sprites["skill1Icon1"].setPosition(200, 20);
+	sprites["skill2Icon1"].setPosition(250, 20);
+	sprites["skill3Icon1"].setPosition(300, 20);
+	sprites["skill1Icon2"].setPosition(1060, 20);
+	sprites["skill2Icon2"].setPosition(1110, 20);
+	sprites["skill3Icon2"].setPosition(1160, 20);
+
+	text.setString("Pontuação: " + to_string(winsPlayer1) + " | " + to_string(winsPlayer2));
 
 	if (ball.color == 1)
 		sprites["spriteBall"].setTexture(textures["ball1"]);
@@ -86,6 +118,14 @@ void Gamemode::drawAll(RenderWindow &window)
 		sprites["spriteBall"].setTexture(textures["ball2"]);
 	if (ball.color == 3)
 		sprites["spriteBall"].setTexture(textures["ball3"]);
+	if (!controllers["Player1"]->cooldown)
+		sprites["skill1Icon1"].setTexture(textures["iconPlayer1Frozen"]);
+	if (!controllers["Player2"]->cooldown)
+		sprites["skill1Icon2"].setTexture(textures["iconPlayer2Frozen"]);	
+	if (!controllers["Player1"]->cooldown2)
+		sprites["skill2Icon1"].setTexture(textures["iconPlayer1PerfectShoot"]);
+	if (!controllers["Player2"]->cooldown2)
+		sprites["skill2Icon2"].setTexture(textures["iconPlayer2PerfectShoot"]);
 
 	window.draw(sprites["spritePlayer1"]);
 	window.draw(sprites["spritePlayer2"]);
@@ -94,6 +134,16 @@ void Gamemode::drawAll(RenderWindow &window)
 	window.draw(sprites["spriteWall3"]);
 	window.draw(sprites["spriteWall4"]);
 	window.draw(sprites["spriteBall"]);
+	window.draw(sprites["skill1Icon1"]);
+	window.draw(sprites["skill2Icon1"]);
+	window.draw(sprites["skill3Icon1"]);
+	window.draw(sprites["skill1Icon2"]);
+	window.draw(sprites["skill2Icon2"]);
+	window.draw(sprites["skill3Icon2"]);
+	if(Player1Skill3)
+	window.draw(sprites["spriteBone1"]);
+	if (Player2Skill3)
+	window.draw(sprites["spriteBone2"]);
 	window.draw(text);
 	
 }
@@ -115,24 +165,57 @@ void Gamemode::controlGame()
 	if (ball.pos.getVector().x < 20)
 		givePoints(1);
 	if (ball.pos.getVector().x > 780)
-		trava = 1;
+		trava = 1;	
+
+	if (P1lockSkill1 == false)
+	{
+		skills["P1Skill1"]->ActivePowerUp(0);
+		sprites["skill1Icon1"].setTexture(textures["iconDisableFrozen"]);
+		P1lockSkill1 = true;
+	}
+	if (P2lockSkill1 == false)
+	{
+		sprites["skill1Icon2"].setTexture(textures["iconDisableFrozen"]);
+		skills["P2Skill1"]->ActivePowerUp(1);
+		P2lockSkill1 = true;
+	}
+	if (P1lockSkill2 == false)
+	{
+		skills["P1Skill2"]->ActivePowerUp(0);
+		sprites["skill2Icon1"].setTexture(textures["iconDisablePerfectShoot"]);
+		P1lockSkill2 = true;
+	}
+	if (P2lockSkill2 == false)
+	{
+		sprites["skill2Icon2"].setTexture(textures["iconDisablePerfectShoot"]);
+		skills["P2Skill2"]->ActivePowerUp(1);
+		P2lockSkill2 = true;
+	}
+	if (P1lockSkill3 == false)
+	{
+		skills["P1Skill3"]->ActivePowerUp(0);
+		sprites["skill3Icon1"].setTexture(textures["iconDisableVortex"]);
+		P1lockSkill3 = true;
+	}
+	if (P2lockSkill3 == false)
+	{
+		sprites["skill3Icon2"].setTexture(textures["iconDisableVortex"]);
+		skills["P2Skill3"]->ActivePowerUp(1);
+		P2lockSkill3 = true;
+	}
 
 	if (skills["P1Skill1"]->getCooldown() == false)
 		controllers["Player1"]->cooldown = false;
 	if (skills["P2Skill1"]->getCooldown() == false)
 		controllers["Player2"]->cooldown = false;
-
-	if (P1lockSkill1 == false)
-	{
-		skills["P1Skill1"]->ActivePowerUp(0);
-		P1lockSkill1 = true;
-	}
-	if (P2lockSkill1 == false)
-	{
-		skills["P2Skill1"]->ActivePowerUp(1);
-		P2lockSkill1 = true;
-	}
-
+	if (skills["P1Skill2"]->getCooldown() == false)
+		controllers["Player1"]->cooldown2 = false;
+	if (skills["P2Skill2"]->getCooldown() == false)
+		controllers["Player2"]->cooldown2 = false;
+	if (skills["P1Skill3"]->getCooldown() == false)
+		controllers["Player1"]->cooldown3 = false;
+	if (skills["P2Skill3"]->getCooldown() == false)
+		controllers["Player2"]->cooldown3 = false;
 
 	if (winsPlayer1 % 5 == 0 && travaPower == false && winsPlayer1 != 0)
 	{
@@ -163,9 +246,7 @@ void Gamemode::givePoints(int who)
 	if (who == 1)
 		winsPlayer2++;
 	
-	/*wall1.BoostReset();*/
 	ball.BallReset();
-	/*ball.RandomSpeeds(Random(), Random());*/
 	trava = 0;
 	
 }
@@ -202,8 +283,9 @@ void Gamemode::tradeMode(string m)
 		controllers["Player"]->setInfo(player1);
 		skills["P1Skill1"] = new Frozen();
 		skills["P1Skill1"]->gm = this;
-		/*skills["P1Skill2"] = new Frozen();
-		skills["P1Skill3"] = new Frozen();*/
+		skills["P1Skill2"] = new PerfectShoot();
+		skills["P1Skill2"]->gm = this;
+		/*skills["P1Skill3"] = new Frozen();*/
 		controllers["Player2"] = new ControllerIa;
 		controllers["Player2"]->gamemode = this;
 		controllers["Player2"]->setInfo(player2);
@@ -215,11 +297,19 @@ void Gamemode::tradeMode(string m)
 		controllers["Player1"]->setInfo(player1);
 		skills["P1Skill1"] = new Frozen();
 		skills["P1Skill1"]->gm = this;
+		skills["P1Skill2"] = new PerfectShoot();
+		skills["P1Skill2"]->gm = this;
+		skills["P1Skill3"] = new Vortex();
+		skills["P1Skill3"]->gm = this;
 		controllers["Player2"] = new ControllerPlayer(1);
 		controllers["Player2"]->gamemode = this;
 		controllers["Player2"]->setInfo(player2);
 		skills["P2Skill1"] = new Frozen();
 		skills["P2Skill1"]->gm = this;
+		skills["P2Skill2"] = new PerfectShoot();
+		skills["P2Skill2"]->gm = this;
+		skills["P2Skill3"] = new Vortex();
+		skills["P2Skill3"]->gm = this;
 	}
 }
 

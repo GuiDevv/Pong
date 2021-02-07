@@ -11,6 +11,8 @@ void CollisionSystem::setAll()
 	wall2Area = &gm->wall2Area;
 	wall3Area = &gm->wall3Area;
 	wall4Area = &gm->wall4Area;
+	spectralBone1 = &gm->SpectralBone1;
+	spectralBone2 = &gm->SpectralBone2;
 	ballArea = &gm->ballArea;
 	LimitUp = 0;
 	LimitDown = 800;
@@ -42,6 +44,22 @@ void CollisionSystem::tickCollision()
 	{
 		if (ball->dir. x < 0)
 		ball->pos.x = ball->pos.x + 30;
+		if (ball->dir.x > 0)
+			ball->pos.x = ball->pos.x - 30;
+		ball->dir.x = ball->dir.x * -1; // <---------------
+	}
+	if (spectralBone1->intersects(*ballArea) && gm->Player1Skill3)
+	{
+		if (ball->dir.x < 0)
+			ball->pos.x = ball->pos.x + 30;
+		if (ball->dir.x > 0)
+			ball->pos.x = ball->pos.x - 30;
+		ball->dir.x = ball->dir.x * -1;
+	}
+	if (spectralBone2->intersects(*ballArea) && gm->Player2Skill3)
+	{
+		if (ball->dir.x < 0)
+			ball->pos.x = ball->pos.x + 30;
 		if (ball->dir.x > 0)
 			ball->pos.x = ball->pos.x - 30;
 		ball->dir.x = ball->dir.x * -1;

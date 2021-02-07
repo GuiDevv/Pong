@@ -87,6 +87,18 @@ void Players::UseSkill1()
 	activeSkill1 = true;
 }
 
+void Players::UseSkill2()
+{
+	if (!activeSkill2)
+		activeSkill2 = true;
+}
+
+void Players::UseSkill3()
+{
+	if (!activeSkill3)
+		activeSkill3 = true;
+}
+
 void Players::setInfo(int tipo, int t)
 {
 	team = t;

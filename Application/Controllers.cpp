@@ -46,12 +46,30 @@ void ControllerPlayer::tickController()
 		}
 		if (Keyboard::isKeyPressed(inputs.skill1) && cooldown == false)
 		{
-			controlledPlayer->UseSkill1();
+			controlledPlayer->UseSkill1();			
 			cooldown = true;
 			if (type == 0)
 				gamemode->P1lockSkill1 = false;
 			if (type == 1)
 				gamemode->P2lockSkill1 = false;
+		}
+		if (Keyboard::isKeyPressed(inputs.skill2) && cooldown2 == false && gamemode->ball.color != 1)
+		{
+			controlledPlayer->UseSkill2();
+			cooldown2 = true;
+			if (type == 0)
+				gamemode->P1lockSkill2 = false;
+			if (type == 1)
+				gamemode->P2lockSkill2 = false;
+		}
+		if (Keyboard::isKeyPressed(inputs.skill3) && cooldown3 == false)
+		{
+			controlledPlayer->UseSkill3();
+			cooldown3 = true;
+			if (type == 0)
+				gamemode->P1lockSkill3 = false;
+			if (type == 1)
+				gamemode->P2lockSkill3 = false;
 		}
 
 	}

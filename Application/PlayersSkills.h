@@ -4,6 +4,7 @@
 
 #include "Gamemode.h"
 #include "Timer.h"
+#include <math.h>
 
 class PlayersSkills
 {
@@ -31,32 +32,33 @@ public:
 
 };
 
-//class PerfectShoot : public PlayersSkills {
-//public:
-//
-//	Ball* ball;
-//	Vector* pos;
-//	Timer time;
-//	bool activePow;
-//
-//	void ActivePowerUp(Gamemode& g);
-//	void RemovePowerUp();
-//	void tickPower();
-//
-//};
-//
-//class Vortex : public PlayersSkills {
-//public:
-//
-//	Ball* ball;
-//	float speedBackup;
-//	Timer time;
-//	bool activePow;
-//
-//	void ActivePowerUp(Gamemode& g);
-//	void RemovePowerUp();
-//	void tickPower();
-//
-//};
+class PerfectShoot : public PlayersSkills {
+public:
+
+	Timer cooldown, tradeSprite;
+	bool usingPower, cooldownActive;
+	int target;
+
+	void ActivePowerUp(int who);
+	void RemovePowerUp();
+	void tickPower();
+	bool getCooldown();
+	void RemoveSprite();
+
+};
+
+class Vortex : public PlayersSkills {
+public:
+
+	Timer cooldown, spectralShield;
+	bool usingPower, cooldownActive;
+	int target;
+
+	void ActivePowerUp(int who);
+	void RemovePowerUp();
+	void tickPower();
+	bool getCooldown();
+
+};
 
 #endif // !_playerSkills
