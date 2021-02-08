@@ -166,7 +166,7 @@ void Gamemode::controlGame()
 		givePoints(1);
 	if (ball.pos.getVector().x > 780)
 		trava = 1;	
-
+	
 	if (P1lockSkill1 == false)
 	{
 		skills["P1Skill1"]->ActivePowerUp(0);
@@ -204,9 +204,9 @@ void Gamemode::controlGame()
 		P2lockSkill3 = true;
 	}
 
-	if (skills["P1Skill1"]->getCooldown() == false)
+	if (!skills["P1Skill1"]->getCooldown())
 		controllers["Player1"]->cooldown = false;
-	if (skills["P2Skill1"]->getCooldown() == false)
+	if (!skills["P2Skill1"]->getCooldown())
 		controllers["Player2"]->cooldown = false;
 	if (skills["P1Skill2"]->getCooldown() == false)
 		controllers["Player1"]->cooldown2 = false;
@@ -312,6 +312,12 @@ void Gamemode::tradeMode(string m)
 		skills["P2Skill3"]->gm = this;
 	}
 }
+
+class Tickables{
+public:
+	virtual void tick() = 0;
+};
+
 
 void Gamemode::ticksControl()
 {

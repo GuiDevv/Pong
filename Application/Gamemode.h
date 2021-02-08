@@ -16,6 +16,7 @@
 using namespace std;
 using namespace sf;
 
+//class Players;
 
 class Controllers;
 

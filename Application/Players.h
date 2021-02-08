@@ -1,6 +1,10 @@
 #pragma once
+#pragma once
+#ifndef _player
+#define _player
 #include "Timer.h"
 #include "Vector.h"
+//#include "PlayersSkills.h"
 
 using namespace sf;
 
@@ -28,3 +32,5 @@ public:
 
 
 };
+
+#endif // !_player

@@ -10,6 +10,8 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
+class Players;
+
 class Controllers
 {
 public:
