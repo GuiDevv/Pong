@@ -44,32 +44,44 @@ void ControllerPlayer::tickController()
 		{
 			controlledPlayer->Boost();
 		}
-		if (Keyboard::isKeyPressed(inputs.skill1) && cooldown == false)
-		{
-			controlledPlayer->UseSkill1();			
-			cooldown = true;
+		if (Keyboard::isKeyPressed(inputs.skill1) && controlledPlayer->activeSkill1 == false)
+		{						
 			if (type == 0)
-				gamemode->P1lockSkill1 = false;
+			{
+				controlledPlayer->UseSkill1(0);
+				gamemode->sprites["skill1Icon1"].setTexture(gamemode->textures["iconDisableFrozen"]);
+			}				
 			if (type == 1)
-				gamemode->P2lockSkill1 = false;
+			{
+				controlledPlayer->UseSkill1(1);
+				gamemode->sprites["skill1Icon2"].setTexture(gamemode->textures["iconDisableFrozen"]);
+			}				
 		}
-		if (Keyboard::isKeyPressed(inputs.skill2) && cooldown2 == false && gamemode->ball.color != 1)
+		if (Keyboard::isKeyPressed(inputs.skill2) && controlledPlayer->activeSkill2 == false && gamemode->ball.color != 1)
 		{
-			controlledPlayer->UseSkill2();
-			cooldown2 = true;
 			if (type == 0)
-				gamemode->P1lockSkill2 = false;
+			{
+				controlledPlayer->UseSkill2(0);
+				gamemode->sprites["skill2Icon1"].setTexture(gamemode->textures["iconDisablePerfectShoot"]);
+			}				
 			if (type == 1)
-				gamemode->P2lockSkill2 = false;
+			{
+				controlledPlayer->UseSkill2(1);
+				gamemode->sprites["skill2Icon2"].setTexture(gamemode->textures["iconDisablePerfectShoot"]);
+			}				
 		}
-		if (Keyboard::isKeyPressed(inputs.skill3) && cooldown3 == false)
+		if (Keyboard::isKeyPressed(inputs.skill3) && controlledPlayer->activeSkill3 == false)
 		{
-			controlledPlayer->UseSkill3();
-			cooldown3 = true;
 			if (type == 0)
-				gamemode->P1lockSkill3 = false;
+			{
+				controlledPlayer->UseSkill3(0);
+				gamemode->sprites["skill3Icon1"].setTexture(gamemode->textures["iconDisableVortex"]);
+			}				
 			if (type == 1)
-				gamemode->P2lockSkill3 = false;
+			{
+				controlledPlayer->UseSkill3(1);
+				gamemode->sprites["skill3Icon2"].setTexture(gamemode->textures["iconDisableVortex"]);
+			}				
 		}
 
 	}

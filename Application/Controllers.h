@@ -19,7 +19,7 @@ public:
 	int type;
 	Players* controlledPlayer;
 	Ball* ball;
-	bool enable = true, cooldown = false, cooldown2 = false, cooldown3 = false;
+	bool enable = true;
 
 	virtual void setInfo(Players& w);
 	virtual void tickController();

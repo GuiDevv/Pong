@@ -5,6 +5,8 @@
 
 using namespace sf;
 
+class Players;
+
 class CollisionSystem
 {
 public:

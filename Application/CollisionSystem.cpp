@@ -3,8 +3,8 @@
 void CollisionSystem::setAll()
 {
 	ball = &gm->ball;
-	play1 = &gm->player1;
-	play2 = &gm->player2;
+	play1 = gm->player1;
+	play2 = gm->player2;
 	play1Area = &gm->player1Area;
 	play2Area = &gm->player2Area;
 	wall1Area = &gm->wall1Area;

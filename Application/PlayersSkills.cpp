@@ -1,21 +1,64 @@
 #include "PlayersSkills.h"
 
+void PlayersSkills::spritesSettings(int type, int skill, int option)
+{
+	if (type == 0)
+	{
+		if (option == 0) // Colocar Sprite
+		{
+			if (skill == 1)
+				gm->sprites["spritePlayer2"] = gm->sprites["spritePlayer2Frozen"];
+			if (skill == 2)
+				gm->sprites["spritePlayer1"] = gm->sprites["spritePlayer1PerfectShoot"];
+			if (skill == 3)
+				gm->sprites["spritePlayer1"] = gm->sprites["spritePlayer1Vortex"];
+		}
+		if (option == 1) // Remover Sprite
+		{
+			if (skill == 1)
+				gm->sprites["spritePlayer2"] = gm->sprites["spriteSkull2"];
+			if (skill == 2)
+				gm->sprites["spritePlayer1"] = gm->sprites["spriteSkull1"];
+			if (skill == 3)
+				gm->sprites["spritePlayer1"] = gm->sprites["spriteSkull1"];
+		}
+	}
+	if (type == 1)
+	{
+		if (option == 0) // Colocar Sprite
+		{
+			if (skill == 1)
+				gm->sprites["spritePlayer1"] = gm->sprites["spritePlayer1Frozen"];
+			if (skill == 2)
+				gm->sprites["spritePlayer2"] = gm->sprites["spritePlayer2PerfectShoot"];
+			if (skill == 3)
+				gm->sprites["spritePlayer2"] = gm->sprites["spritePlayer2Vortex"];
+		}
+		if (option == 1) // Remover Sprite
+		{
+			if (skill == 1)
+				gm->sprites["spritePlayer1"] = gm->sprites["spriteSkull1"];
+			if (skill == 2)
+				gm->sprites["spritePlayer2"] = gm->sprites["spriteSkull2"];
+			if (skill == 3)
+				gm->sprites["spritePlayer2"] = gm->sprites["spriteSkull2"];
+		}
+	}
+}
+
 void PlayersSkills::ActivePowerUp(int who)
 {
 }
 void PlayersSkills::RemovePowerUp()
 {
 }
-
 void PlayersSkills::tickPower()
 {
 }
-
 bool PlayersSkills::getCooldown()
 {
 	return false;
 }
-
 
 void Frozen::ActivePowerUp(int who)
 {
@@ -25,14 +68,14 @@ void Frozen::ActivePowerUp(int who)
 	if (target == 0)
 	{
 		gm->controllers["Player2"]->enable = false;
-		gm->sprites["spritePlayer2"] = gm->sprites["spritePlayer2Frozen"];
+		spritesSettings(0, 1, 0);
 		frozed.start(15);
 		targetFrozed = true;
 	}
 	if (target == 1)
 	{
 		gm->controllers["Player1"]->enable = false;
-		gm->sprites["spritePlayer1"] = gm->sprites["spritePlayer1Frozen"];
+		spritesSettings(1, 1, 0);
 		frozed.start(15);
 		targetFrozed = true;
 	}
@@ -43,18 +86,17 @@ void Frozen::RemovePowerUp()
 	if (target == 0)
 	{
 		gm->controllers["Player2"]->enable = true;
-		gm->sprites["spritePlayer2"] = gm->sprites["spriteSkull2"];
+		spritesSettings(0, 1, 1);
 		gm->player2.activeSkill1 = false;
 	}
 		
 	if (target == 1)
 	{
 		gm->controllers["Player1"]->enable = true;
-		gm->sprites["spritePlayer1"] = gm->sprites["spriteSkull1"];
+		spritesSettings(1, 1, 1);
 		gm->player1.activeSkill1 = false;
 	}
 }
-
 void Frozen::tickPower()
 {
 	if (cooldown.hasEnded() && cooldownActive == true)
@@ -62,7 +104,6 @@ void Frozen::tickPower()
 	if (frozed.hasEnded() && targetFrozed == true)
 		RemovePowerUp();		
 }
-
 bool Frozen::getCooldown()
 {
 	return cooldownActive;
@@ -82,7 +123,7 @@ void PerfectShoot::ActivePowerUp(int who)
 		gm->ball.dir = Vector(1, 0);
 		if (gm->ball.color == 3)
 			gm->ball.dir = Vector(-1, 0);
-		gm->sprites["spritePlayer1"] = gm->sprites["spritePlayer1PerfectShoot"];
+		spritesSettings(0, 2, 0);
 	}
 	if (target == 1)
 	{
@@ -91,10 +132,9 @@ void PerfectShoot::ActivePowerUp(int who)
 			gm->ball.dir = Vector(-1, 0);
 		if (gm->ball.color == 2)
 			gm->ball.dir = Vector(1, 0);
-		gm->sprites["spritePlayer2"] = gm->sprites["spritePlayer2PerfectShoot"];
+		spritesSettings(1, 2, 0);
 	}
 }
-
 void PerfectShoot::RemovePowerUp()
 {
 	cooldownActive = false;
@@ -103,7 +143,6 @@ void PerfectShoot::RemovePowerUp()
 	if (target == 1)
 		gm->player2.activeSkill2 = false;
 }
-
 void PerfectShoot::tickPower()
 {
 	if (cooldown.hasEnded() && cooldownActive == true)
@@ -111,19 +150,17 @@ void PerfectShoot::tickPower()
 	if (tradeSprite.hasEnded() && usingPower == true)
 		RemoveSprite();
 }
-
 bool PerfectShoot::getCooldown()
 {
 	return cooldownActive;
 }
-
 void PerfectShoot::RemoveSprite()
 {
 	usingPower = false;
 	if (target == 0)
-		gm->sprites["spritePlayer1"] = gm->sprites["spriteSkull1"];
+		spritesSettings(0, 2, 1);
 	if (target == 1)
-		gm->sprites["spritePlayer2"] = gm->sprites["spriteSkull2"];
+		spritesSettings(1, 2, 1);
 }
 
 void Vortex::ActivePowerUp(int who)
@@ -137,31 +174,29 @@ void Vortex::ActivePowerUp(int who)
 	{
 		spectralShield.start(10);
 		gm->Player1Skill3 = true;
-		gm->sprites["spritePlayer1"] = gm->sprites["spritePlayer1Vortex"];
+		spritesSettings(0, 3, 0);
 	}
 	if (target == 1)
 	{
 		spectralShield.start(10);
 		gm->Player2Skill3 = true;
-		gm->sprites["spritePlayer2"] = gm->sprites["spritePlayer2Vortex"];
+		spritesSettings(1, 3, 0);
 	}
 }
-
 void Vortex::RemovePowerUp()
 {
 	usingPower = false;
 	if (target == 0)
 	{
 		gm->Player1Skill3 = false;
-		gm->sprites["spritePlayer1"] = gm->sprites["spriteSkull1"];
+		spritesSettings(0, 3, 1);
 	}		
 	if (target == 1)
 	{
 		gm->Player2Skill3 = false;
-		gm->sprites["spritePlayer2"] = gm->sprites["spriteSkull2"];
+		spritesSettings(1, 3, 1);
 	}	
 }
-
 void Vortex::tickPower()
 {
 	if (cooldown.hasEnded() && cooldownActive == true)
@@ -169,32 +204,7 @@ void Vortex::tickPower()
 	if (spectralShield.hasEnded() && usingPower == true)
 		RemovePowerUp();
 }
-
 bool Vortex::getCooldown()
 {
 	return cooldownActive;
 }
-
-//Antigo: PerfectShoot
-/*gm->ball.dir = Vector(0, 0);
-		following.start(10);
-		pos = new Vector(1330, 400);
-		distance = sqrt(pow(gm->ball.pos.x - pos->x, 2) + pow(gm->ball.pos.y - pos->x, 2));
-		x = gm->ball.pos.x / distance;
-		y = gm->ball.pos.y / distance;
-		gm->sprites["spritePlayer1"] = gm->sprites["spritePlayer1PerfectShoot"];
-		targetFollowed = true;*/
-
-		/*if (targetFollowed)
-			{
-				if (gm->ball.pos.x < pos->x)
-					gm->ball.pos.x = gm->ball.pos.x + x;
-				if (gm->ball.pos.x > pos->x)
-					gm->ball.pos.x = gm->ball.pos.x - x;
-				if (gm->ball.pos.y < pos->y)
-					gm->ball.pos.y = gm->ball.pos.y + y;
-				if (gm->ball.pos.y > pos->y)
-					gm->ball.pos.y = gm->ball.pos.y - y;
-			}*/
-			/*if (gm->ball.pos.y == y && gm->ball.pos.x == x)
-				RemovePowerUp();*/
