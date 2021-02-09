@@ -87,14 +87,14 @@ void Frozen::RemovePowerUp()
 	{
 		gm->controllers["Player2"]->enable = true;
 		spritesSettings(0, 1, 1);
-		gm->player2.activeSkill1 = false;
+		gm->player2->activeSkill1 = false;
 	}
 		
 	if (target == 1)
 	{
 		gm->controllers["Player1"]->enable = true;
 		spritesSettings(1, 1, 1);
-		gm->player1.activeSkill1 = false;
+		gm->player1->activeSkill1 = false;
 	}
 }
 void Frozen::tickPower()
@@ -139,9 +139,9 @@ void PerfectShoot::RemovePowerUp()
 {
 	cooldownActive = false;
 	if (target == 0)
-		gm->player1.activeSkill2 = false;
+		gm->player1->activeSkill2 = false;
 	if (target == 1)
-		gm->player2.activeSkill2 = false;
+		gm->player2->activeSkill2 = false;
 }
 void PerfectShoot::tickPower()
 {

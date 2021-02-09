@@ -240,8 +240,8 @@ void Gamemode::ticksControl()
 {
 	collisions->tickCollision();
 	
-	player1.tickWall();
-	player2.tickWall();
+	player1->tickPlayer();
+	player2->tickPlayer();
 	ball.tickBall();
 	for (auto p : controllers) {
 		p.second->tickController();

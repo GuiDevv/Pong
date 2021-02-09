@@ -11,14 +11,16 @@ using namespace sf;
 class Players
 {
 public:
-
+	
 	class Gamemode* gm;
 	Timer time;
 	int team = 0, type;
 	bool activeBoost, activeSkill1 = false, activeSkill2 = false, activeSkill3 = false;
 	Vector pos, posBackup, dir;
 	float speed, speedInicial, boostValue, limitDown, limitUp, limitLeft, limitRight;
-	map<string, class PlayersSkills*> skills;
+	class PlayersSkills *skill1, *skill2, *skill3;
+
+	/*map<string, class PlayersSkills*> skills;*/
 
 	void Down();
 	void Up();

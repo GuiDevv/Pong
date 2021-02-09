@@ -84,19 +84,19 @@ void Players::BoostReset()
 void Players::UseSkill1(int type)
 {
 	activeSkill1 = true;
-	skills["Skill1"]->ActivePowerUp(type);
+	skill1->ActivePowerUp(type);
 }
 
 void Players::UseSkill2(int type)
 {
 	activeSkill2 = true;
-	skills["Skill2"]->ActivePowerUp(type);
+	skill2->ActivePowerUp(type);
 }
 
 void Players::UseSkill3(int type)
 {
 	activeSkill3 = true;
-	skills["Skill3"]->ActivePowerUp(type);
+	skill3->ActivePowerUp(type);
 }
 
 void Players::setInfo(int tipo, int t)
@@ -116,12 +116,12 @@ void Players::setInfo(int tipo, int t)
 		limitDown = 700;
 		limitLeft = 75;
 		limitRight = 600;
-		skills["Skill1"] = new Frozen();
-		skills["Skill1"]->gm = gm;
-		skills["Skill2"] = new PerfectShoot();
-		skills["Skill2"]->gm = gm;
-		skills["Skill3"] = new Vortex();
-		skills["Skill3"]->gm = gm;
+		skill1 = new Frozen();
+		skill1->gm = gm;
+		skill2 = new PerfectShoot();
+		skill2->gm = gm;
+		skill3 = new Vortex();
+		skill3->gm = gm;
 	}
 
 	else if (tipo == 1 || t == 1) //IA
@@ -136,20 +136,21 @@ void Players::setInfo(int tipo, int t)
 		limitDown = 700;
 		limitLeft = 700;
 		limitRight = 1225;
-		skills["Skill1"] = new Frozen();
-		skills["Skill1"]->gm = gm;
-		skills["Skill2"] = new PerfectShoot();
-		skills["Skill2"]->gm = gm;
-		skills["Skill3"] = new Vortex();
-		skills["Skill3"]->gm = gm;
+		skill1 = new Frozen();
+		skill1->gm = gm;
+		skill2 = new PerfectShoot();
+		skill2->gm = gm;
+		skill3 = new Vortex();
+		skill3->gm = gm;
 	}
 }
 
 void Players::tickPlayer()
 {
-	for (auto p : skills) {
-		p.second->tickPower();
-	}
+
+	skill1->tickPower();
+	skill2->tickPower();
+	skill3->tickPower();
 
 	if (time.hasEnded() && activeBoost == true)
 	{
@@ -159,7 +160,7 @@ void Players::tickPlayer()
 	dir.x = 0;
 	dir.y = 0;
 
-	if (!skills["Skill1"]->getCooldown() && activeSkill1)
+	if (!skill1->getCooldown() && activeSkill1)
 	{
 		activeSkill1 = false;
 		if (type == 0)
@@ -167,7 +168,7 @@ void Players::tickPlayer()
 		if (type == 1)
 			gm->sprites["skill1Icon2"].setTexture(gm->textures["iconPlayer2Frozen"]);
 	}		
-	if (!skills["Skill2"]->getCooldown() && activeSkill2)
+	if (!skill2->getCooldown() && activeSkill2)
 	{
 		activeSkill2 = false;
 		if (type == 0)
@@ -175,7 +176,7 @@ void Players::tickPlayer()
 		if (type == 1)
 			gm->sprites["skill2Icon2"].setTexture(gm->textures["iconPlayer2PerfectShoot"]);
 	}		
-	if (!skills["Skill3"]->getCooldown() && activeSkill3)
+	if (!skill3->getCooldown() && activeSkill3)
 	{
 		activeSkill3 = false;
 		if (type == 0)
