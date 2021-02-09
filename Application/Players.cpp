@@ -99,10 +99,11 @@ void Players::UseSkill3(int type)
 	skill3->ActivePowerUp(type);
 }
 
-void Players::setInfo(int tipo, int t)
+void Players::setInfo(int tipo, int t, Gamemode& g)
 {
 	team = t;
 	type = tipo;
+	gm = &g;
 
 	if (tipo == 0) //Player
 	{

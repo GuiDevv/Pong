@@ -48,7 +48,7 @@ void ControllerPlayer::tickController()
 		{						
 			if (type == 0)
 			{
-				/*controlledPlayer->UseSkill1(0);*/
+				controlledPlayer->UseSkill1(0);
 				gamemode->sprites["skill1Icon1"].setTexture(gamemode->textures["iconDisableFrozen"]);
 			}				
 			if (type == 1)

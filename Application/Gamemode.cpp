@@ -8,11 +8,9 @@ Gamemode::Gamemode()
 void Gamemode::loadInfo()
 {
 	player1 = new Players();
-	player1->setInfo(0, 0);
-	player1->gm = this;
+	player1->setInfo(0, 0, *this);	
 	player2 = new Players();
-	player2->setInfo(1, 1);
-	player2->gm = this;
+	player2->setInfo(1, 1, *this);
 	ball.setInfo(675, 350);
 	ball.color = 1;
 	player1Area = IntRect(player1->pos.x, player1->pos.y, 100, 104);
@@ -26,8 +24,8 @@ void Gamemode::loadInfo()
 	SpectralBone2 = IntRect(1320, 277, 80, 250);
 	collisions = new CollisionSystem;
 	collisions->gm = this;
-	collisions->setAll();
 
+	collisions->setAll();
 	textures["player1"].loadFromFile("Assets\\skull1.png");
 	textures["player2"].loadFromFile("Assets\\skull2.png");
 	textures["wall1"].loadFromFile("Assets\\wall1.png");

@@ -31,7 +31,7 @@ public:
 	void UseSkill1(int type);
 	void UseSkill2(int type);
 	void UseSkill3(int type);
-	void setInfo(int tipo, int t); // Tipo (0) - Player | Tipo (1) - IA
+	void setInfo(int tipo, int t, Gamemode& g); // Tipo (0) - Player | Tipo (1) - IA
 	void tickPlayer();
 
 
