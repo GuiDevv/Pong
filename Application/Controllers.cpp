@@ -22,6 +22,7 @@ void ControllerPlayer::setInfo(Players& w)
 {
 	float t = gamemode->Random();
 	controlledPlayer = &w;
+	
 	if (type == 0)
 		controlledPlayer->boostValue = 50;
 	else
@@ -30,6 +31,25 @@ void ControllerPlayer::setInfo(Players& w)
 
 void ControllerPlayer::tickController()
 {
+	/*
+	Vector input;
+	if (Keyboard::isKeyPressed(inputs.up))
+		input.y = 1;
+	else if (Keyboard::isKeyPressed(inputs.down))
+		input.y = -1;
+	if (Keyboard::isKeyPressed(inputs.left))
+		input.x = -1;
+	else if (Keyboard::isKeyPressed(inputs.right))
+		input.x = 1;
+	controlledPlayer->handleInput(input);
+
+
+	if (Keyboard::isKeyPressed(inputs.ability1))
+		controlledPlayer->skillSystem->useAbility(1);
+	else if (Keyboard::isKeyPressed(inputs.ability2))
+		controlledPlayer->skillSystem->useAbility(1);
+	*/
+
 	if (enable)
 	{
 		if (Keyboard::isKeyPressed(inputs.up))
@@ -91,6 +111,8 @@ void ControllerIa::setInfo(Players& w)
 {
 	controlledPlayer = &w;
 	ball = &gamemode->ball;
+	timer.start(10);
+	block = true;
 }
 
 void ControllerIa::tickController()
@@ -117,15 +139,15 @@ void ControllerIa::tickController()
 	}
 	if (!block)
 	{
-		timer.start(10);
+		timer.start(15);
 		block = true;
 		
-		if (!controlledPlayer->activeSkill3)
-			controlledPlayer->skill3->ActivePowerUp(1);
+		if (!controlledPlayer->activeSkill1)
+			controlledPlayer->skill1->ActivePowerUp(1);
 		else if (!controlledPlayer->activeSkill2)
 			controlledPlayer->skill2->ActivePowerUp(1);
-		else if (!controlledPlayer->activeSkill1)
-			controlledPlayer->skill1->ActivePowerUp(1);
+		else if (!controlledPlayer->activeSkill3)
+			controlledPlayer->skill3->ActivePowerUp(1);
 
 	}
 	if (block && timer.hasEnded())

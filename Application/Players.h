@@ -34,6 +34,21 @@ public:
 	void setInfo(int tipo, int t, Gamemode& g); // Tipo (0) - Player | Tipo (1) - IA
 	void tickPlayer();
 
+	void handleInput(Vector v) {
+		if (v.x != 0) {
+			if (v.x > 0)
+				Right();
+			else
+				Left();
+		}
+		if (v.y != 0) {
+			if (v.y > 0)
+				Up();
+			else
+				Down();
+		}
+	}
+
 
 };
 
