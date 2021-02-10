@@ -44,6 +44,9 @@ class ControllerIa : public Controllers
 {
 public:
 
+	Timer timer;
+	bool block = false;
+
 	void setInfo(Players& w);
 	void tickController();
 };

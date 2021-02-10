@@ -42,7 +42,6 @@ public:
 	void drawAll(RenderWindow &window);
 	void controlGame();
 	void givePoints(int who);
-	bool Delay(int timer);
 	float Random();
 	void tradeMode(string m);
 	void ticksControl();

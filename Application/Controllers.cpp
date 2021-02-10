@@ -95,8 +95,40 @@ void ControllerIa::setInfo(Players& w)
 
 void ControllerIa::tickController()
 {
+
+	if (enable)
+	{
+	if (ball->pos.x < 670)
+	{
+		if (controlledPlayer->pos.x < 1000)
+			controlledPlayer->Right();
+	}
+	if (ball->pos.x > 680)
+	{
+		if (ball->pos.x < controlledPlayer->pos.x)
+			controlledPlayer->Left();
+		if (ball->pos.x > controlledPlayer->pos.x)
+			controlledPlayer->Right();
+	}
 	if (ball->pos.getVector().y < controlledPlayer->pos.y)
 		controlledPlayer->Up();
 	if (ball->pos.getVector().y > controlledPlayer->pos.y)
 		controlledPlayer->Down();
+	}
+	if (!block)
+	{
+		timer.start(10);
+		block = true;
+		
+		if (!controlledPlayer->activeSkill3)
+			controlledPlayer->skill3->ActivePowerUp(1);
+		else if (!controlledPlayer->activeSkill2)
+			controlledPlayer->skill2->ActivePowerUp(1);
+		else if (!controlledPlayer->activeSkill1)
+			controlledPlayer->skill1->ActivePowerUp(1);
+
+	}
+	if (block && timer.hasEnded())
+		block = false;
+	
 }
