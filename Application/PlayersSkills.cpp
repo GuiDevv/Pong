@@ -63,20 +63,20 @@ bool PlayersSkills::getCooldown()
 void Frozen::ActivePowerUp(int who)
 {
 	target = who;
-	cooldown.start(45);	
+	cooldown.start(30);	
 	cooldownActive = true;
 	if (target == 0)
 	{
 		gm->controllers["Player2"]->enable = false;
 		spritesSettings(0, 1, 0);
-		frozed.start(15);
+		frozed.start(5);
 		targetFrozed = true;
 	}
 	if (target == 1)
 	{
 		gm->controllers["Player1"]->enable = false;
 		spritesSettings(1, 1, 0);
-		frozed.start(15);
+		frozed.start(5);
 		targetFrozed = true;
 	}
 }
@@ -111,7 +111,7 @@ bool Frozen::getCooldown()
 
 void PerfectShoot::ActivePowerUp(int who)
 {
-	cooldown.start(15);
+	cooldown.start(10);
 	cooldownActive = true;
 	usingPower = true;
 	target = who;
@@ -165,7 +165,7 @@ void PerfectShoot::RemoveSprite()
 
 void Vortex::ActivePowerUp(int who)
 {
-	cooldown.start(45);
+	cooldown.start(30);
 	cooldownActive = true;
 	usingPower = true;
 	target = who;

@@ -11,7 +11,7 @@ void Gamemode::loadInfo()
 	player1->setInfo(0, 0, *this);	
 	player2 = new Players();
 	player2->setInfo(1, 1, *this);
-	ball.setInfo(675, 350);
+	ball.setInfo(675, 370);
 	ball.color = 1;
 	player1Area = IntRect(player1->pos.x, player1->pos.y, 100, 104);
 	player2Area = IntRect(player2->pos.x, player2->pos.y, 100, 104);
@@ -50,6 +50,9 @@ void Gamemode::loadInfo()
 	textures["iconDisableVortex"].loadFromFile("Assets\\skill3Disable.png");
 	textures["spectralBone1"].loadFromFile("Assets\\spectralBone1.png");
 	textures["spectralBone2"].loadFromFile("Assets\\spectralBone2.png");
+	textures["division1"].loadFromFile("Assets\\string1.png");
+	textures["division2"].loadFromFile("Assets\\string2.png");
+	textures["division3"].loadFromFile("Assets\\string3.png");
 
 	sprites["spritePlayer1"].setTexture(textures["player1"]);
 	sprites["spritePlayer2"].setTexture(textures["player2"]);
@@ -77,6 +80,9 @@ void Gamemode::loadInfo()
 	sprites["skill3Icon3"].setTexture(textures["iconDisableVortex"]);
 	sprites["spriteBone1"].setTexture(textures["spectralBone1"]);
 	sprites["spriteBone2"].setTexture(textures["spectralBone2"]);
+	sprites["spriteDivision1"].setTexture(textures["division1"]);
+	sprites["spriteDivision2"].setTexture(textures["division2"]);
+	sprites["spriteDivision3"].setTexture(textures["division3"]);
 
 	/*tradeMode("Singleplayer");*/
 	tradeMode("Multiplayer");
@@ -95,6 +101,9 @@ void Gamemode::loadInfo()
 
 void Gamemode::drawAll(RenderWindow &window)
 {	
+	sprites["spriteDivision1"].setPosition(650, 0);
+	sprites["spriteDivision2"].setPosition(650, 0);
+	sprites["spriteDivision3"].setPosition(650, 0);
 	sprites["spritePlayer1"].setPosition(player1->pos.x, player1->pos.y);
 	sprites["spritePlayer2"].setPosition(player2->pos.x, player2->pos.y);
 	sprites["spriteWall1"].setPosition(0, 0);
@@ -120,7 +129,14 @@ void Gamemode::drawAll(RenderWindow &window)
 		sprites["spriteBall"].setTexture(textures["ball2"]);
 	if (ball.color == 3)
 		sprites["spriteBall"].setTexture(textures["ball3"]);
+	if (ball.pos.x > 680 && ball.color != 1)
+		sprites["spriteDivision1"] = sprites["spriteDivision3"];
+	if (ball.pos.x < 670 && ball.color != 1)
+		sprites["spriteDivision1"] = sprites["spriteDivision2"];
+	if (ball.color == 1)
+		sprites["spriteDivision1"] = sprites["spriteDivision1"];
 
+	window.draw(sprites["spriteDivision1"]);
 	window.draw(sprites["spritePlayer1"]);
 	window.draw(sprites["spritePlayer2"]);
 	window.draw(sprites["spriteWall1"]);

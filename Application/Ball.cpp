@@ -21,21 +21,36 @@ void Ball::testCollision(Vector v)
 
 void Ball::tickBall()
 {
-	pos = pos + dir;
-	dir = dir / ace; 
+	pos = pos + dir;	
 
-	/*if (collision)
+	if (dir.y < 0)
 	{
-		Boost();
-		dir.getVector().x *= -1;
-		collision = false;
-	}*/
-
-	/*if (pos.getVector().y <= 0 || pos.getVector().y >= 800)
+		if (dir.y > -0.1)
+			dir.y = -0.1;
+		else
+			dir.y = dir.y / ace;
+	}
+	if (dir.y > 0)
 	{
-		dir.getVector().y *= -1;
-		collision = true;
-	}*/
+		if (dir.y < 0.1)
+			dir.y = 0.1;
+		else
+			dir.y = dir.y / ace;
+	}
+	if (dir.x < 0)
+	{
+		if (dir.x > -0.1)
+			dir.x = -0.1;
+		else
+			dir.x = dir.x / ace;
+	}
+	if (dir.x > 0)
+	{
+		if (dir.x < 0.1)
+			dir.x = 0.1;
+		else
+			dir.x = dir.x / ace;
+	}
 
 }
 
