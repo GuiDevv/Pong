@@ -10,7 +10,9 @@ class PlayersSkills//baseSkill, iSkill
 {
 public:
 	class Gamemode* gm;
-
+	Timer cooldown;
+	bool usingPower, cooldownActive;
+	int target;
 
 	void spritesSettings(int type, int skill, int option);
 	virtual void ActivePowerUp(int who);
@@ -23,9 +25,8 @@ public:
 class Frozen : public PlayersSkills{
 public:
 
-	Timer cooldown, frozed;
-	bool targetFrozed, cooldownActive;
-	int target;
+	Timer  frozed;
+	bool targetFrozed;
 
 	void ActivePowerUp(int who);
 	void RemovePowerUp();
@@ -37,9 +38,8 @@ public:
 class PerfectShoot : public PlayersSkills {
 public:
 //tem q subir
-	Timer cooldown, tradeSprite;
+	Timer tradeSprite;
 	bool usingPower, cooldownActive;
-	int target;
 
 	void ActivePowerUp(int who);
 	void RemovePowerUp();
@@ -52,9 +52,7 @@ public:
 class Vortex : public PlayersSkills {
 public:
 
-	Timer cooldown, spectralShield;
-	bool usingPower, cooldownActive;
-	int target;
+	Timer spectralShield;	
 
 	void ActivePowerUp(int who);
 	void RemovePowerUp();
@@ -62,35 +60,5 @@ public:
 	bool getCooldown();
 
 };
-
-
-
-//public class BaseSkill {
-//
-//};
-//public class Fogo :BaseSkill {
-//
-//};
-//public class FogoMuitoDano :BaseSkill {
-//
-//};
-//public class MuroFogo :BaseSkill {
-//
-//};
-//public class Gelo :BaseSkill {
-//
-//};
-//public class Raio :BaseSkill {
-//
-//};
-//
-//public class Player {
-//	public List<BaseSkill> skills;
-//	public Player() {
-//		skills.add(new Fogo());
-//		skills.add(new Gelo());
-//		skills.add(new Raio());
-//	}
-
 
 #endif // !_playerSkills

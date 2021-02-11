@@ -169,6 +169,7 @@
     <ClCompile Include="Controllers.cpp" />
     <ClCompile Include="Gamemode.cpp" />
     <ClCompile Include="PlayersSkills.cpp" />
+    <ClCompile Include="SkillSystem.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="Players.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="Controllers.h" />
     <ClInclude Include="Gamemode.h" />
     <ClInclude Include="PlayersSkills.h" />
+    <ClInclude Include="SkillSystem.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Players.h" />

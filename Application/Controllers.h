@@ -18,8 +18,8 @@ public:
 	class Gamemode* gamemode;
 	int type;
 	Players* controlledPlayer;
+	Vector input;
 	Ball* ball;
-	bool enable = true;
 
 	virtual void setInfo(Players& w);
 	virtual void tickController();
@@ -46,6 +46,7 @@ public:
 
 	Timer timer;
 	bool block;
+	int random;
 
 	void setInfo(Players& w);
 	void tickController();

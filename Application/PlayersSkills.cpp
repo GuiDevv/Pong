@@ -67,14 +67,14 @@ void Frozen::ActivePowerUp(int who)
 	cooldownActive = true;
 	if (target == 0)
 	{
-		gm->controllers["Player2"]->enable = false;
+		gm->player2->playerEnable = false;
 		spritesSettings(0, 1, 0);
 		frozed.start(5);
 		targetFrozed = true;
 	}
 	if (target == 1)
 	{
-		gm->controllers["Player1"]->enable = false;
+		gm->player1->playerEnable = false;
 		spritesSettings(1, 1, 0);
 		frozed.start(5);
 		targetFrozed = true;
@@ -85,14 +85,14 @@ void Frozen::RemovePowerUp()
 	targetFrozed = false;
 	if (target == 0)
 	{
-		gm->controllers["Player2"]->enable = true;
+		gm->player2->playerEnable = true;
 		spritesSettings(0, 1, 1);
 		gm->player2->activeSkill1 = false;
 	}
 		
 	if (target == 1)
 	{
-		gm->controllers["Player1"]->enable = true;
+		gm->player1->playerEnable = true;
 		spritesSettings(1, 1, 1);
 		gm->player1->activeSkill1 = false;
 	}

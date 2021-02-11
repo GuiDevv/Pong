@@ -2,7 +2,7 @@
 
 Gamemode::Gamemode()
 {
-	srand(time(0));
+	
 }
 
 void Gamemode::loadInfo()
@@ -90,7 +90,7 @@ void Gamemode::loadInfo()
 	fonts["font1"].loadFromFile("Assets\\impact-1.ttf");	
 
 	ball.BallReset();
-	ball.RandomSpeeds(Random(), Random());
+	ball.RandomSpeeds(Random(10), Random(10));
 	text = Text("Pontuação: " + to_string(winsPlayer1) + " | " + to_string(winsPlayer2), fonts["font1"], 35);
 	text.setPosition(580, 0);
 
@@ -161,6 +161,7 @@ void Gamemode::drawAll(RenderWindow &window)
 
 void Gamemode::controlGame()
 {
+	srand(time(0));
 	ticksControl();
 
 	player1Area.left = player1->pos.x;
@@ -199,11 +200,11 @@ void Gamemode::givePoints(int who)
 	
 }
 
-float Gamemode::Random()
+int Gamemode::Random(int t)
 {
-	float random;
-	random = rand() % 10 + 1;
-	random = random / 10;
+	int random;
+	random = rand() % t + 1;
+	random = random / t;
 	return random;
 }
 

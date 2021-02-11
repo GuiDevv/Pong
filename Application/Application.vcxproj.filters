@@ -10,6 +10,7 @@
     <ClCompile Include="Players.cpp" />
     <ClCompile Include="CollisionSystem.cpp" />
     <ClCompile Include="PlayersSkills.cpp" />
+    <ClCompile Include="SkillSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
@@ -20,6 +21,7 @@
     <ClInclude Include="Players.h" />
     <ClInclude Include="CollisionSystem.h" />
     <ClInclude Include="PlayersSkills.h" />
+    <ClInclude Include="SkillSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
