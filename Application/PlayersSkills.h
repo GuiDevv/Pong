@@ -6,7 +6,7 @@
 #include "Timer.h"
 #include <math.h>
 
-class PlayersSkills//baseSkill, iSkill
+class PlayersSkills // Classe abstrata 
 {
 public:
 	class Gamemode* gm;

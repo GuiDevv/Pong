@@ -2,7 +2,7 @@
 
 Gamemode::Gamemode()
 {
-	
+	srand(time(0));
 }
 
 void Gamemode::loadInfo()
@@ -162,7 +162,6 @@ void Gamemode::drawAll(RenderWindow &window)
 
 void Gamemode::controlGame()
 {
-	srand(time(0));
 	ticksControl();
 
 	player1Area.left = player1->pos.x;
@@ -233,16 +232,9 @@ void Gamemode::tradeMode(string m)
 	}
 }
 
-class Tickables{
-public:
-	virtual void tick() = 0;
-};
-
-
 void Gamemode::ticksControl()
 {
-	collisions->tickCollision();
-	
+	collisions->tickCollision();	
 	player1->tickPlayer();
 	player2->tickPlayer();
 	ball.tickBall();

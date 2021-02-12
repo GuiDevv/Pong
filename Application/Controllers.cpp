@@ -23,7 +23,7 @@ void ControllerPlayer::setInfo(Players& w)
 	float t = gamemode->Random(10);
 	controlledPlayer = &w;
 	
-	if (type == 0)
+	if (type == 0) // Não é mais necessário
 		controlledPlayer->boostValue = 50;
 	else
 		controlledPlayer->boostValue = -50;

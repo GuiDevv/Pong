@@ -69,11 +69,6 @@ void Players::Boost()
 	time.start(1);
 	activeBoost = true;
 	speed = speedInicial * 2;
-	/*activeBoost = true;
-	if (x < xInicial + boostValue)
-		x = xInicial + boostValue;
-	else if (x > xInicial + boostValue)
-		x = xInicial + boostValue;*/
 }
 
 void Players::BoostReset()
