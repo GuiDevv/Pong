@@ -76,7 +76,7 @@ void Players::BoostReset()
 	speed = speedInicial;
 }
 
-void Players::UseSkill1(int type)
+void Players::UseSkill1(int type) // Colocar no SystemSkills
 {
 	if (playerEnable && !skills->skill1->activeSkill)
 	{
@@ -130,7 +130,7 @@ void Players::setInfo(int tipo, int t, Gamemode& g)
 		limitDown = 700;
 		limitLeft = 75;
 		limitRight = 600;
-		skills = new SkillSystem();
+		skills = new SkillSystem(); // Colocar aqui
 		skills->gamemode = gm;
 		skills->setSkillsGamemode();
 	}

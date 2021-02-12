@@ -34,7 +34,6 @@ public:
 	int winsPlayer1, winsPlayer2;
 	Text text;
 	bool trava;	
-	clock_t timer;
 	bool travaPower = false, travaPower2 = false;
 
 	void loadInfo();

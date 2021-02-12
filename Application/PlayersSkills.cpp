@@ -66,8 +66,11 @@ void Frozen::ActivePowerUp(int who)
 	cooldown.start(30);	
 	cooldownActive = true;
 	activeSkill = true;
+
+	/*controlledPlayer.pla*/
 	if (target == 0)
 	{
+		
 		gm->player2->playerEnable = false;
 		spritesSettings(0, 1, 0);
 		frozed.start(5);
@@ -123,6 +126,8 @@ void PerfectShoot::ActivePowerUp(int who)
 	target = who;
 	activeSkill = true;
 
+	tradeSprite.start(0.5); // Teria que passar os sprites
+	controlledPlayer
 	if (target == 0)
 	{
 		tradeSprite.start(0.5);

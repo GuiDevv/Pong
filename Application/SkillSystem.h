@@ -1,5 +1,6 @@
 #pragma once
 #include "PlayersSkills.h"
+
 class SkillSystem
 {
 public:
@@ -8,7 +9,7 @@ public:
 	class PlayersSkills* skill1, * skill2, * skill3;
 
 	void getGamemode(Gamemode& gm);
-	void setSkillsGamemode();
+	void setSkillsGamemode(Players &p);
 	void tickSkills();
 };
 

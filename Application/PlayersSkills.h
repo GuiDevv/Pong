@@ -10,6 +10,7 @@ class PlayersSkills // Classe abstrata
 {
 public:
 	class Gamemode* gm;
+	class Players* controlledPlayer;
 	Timer cooldown;
 	bool usingPower, cooldownActive;
 	int target;

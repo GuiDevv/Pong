@@ -85,8 +85,8 @@ void Gamemode::loadInfo()
 	sprites["spriteDivision2"].setTexture(textures["division2"]);
 	sprites["spriteDivision3"].setTexture(textures["division3"]);
 
-	/*tradeMode("Singleplayer");*/
-	tradeMode("Multiplayer");
+	tradeMode("Singleplayer");
+	//tradeMode("Multiplayer");
 
 	fonts["font1"].loadFromFile("Assets\\impact-1.ttf");	
 
