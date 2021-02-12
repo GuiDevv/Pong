@@ -65,6 +65,7 @@ void Frozen::ActivePowerUp(int who)
 	target = who;
 	cooldown.start(30);	
 	cooldownActive = true;
+	activeSkill = true;
 	if (target == 0)
 	{
 		gm->player2->playerEnable = false;
@@ -87,20 +88,25 @@ void Frozen::RemovePowerUp()
 	{
 		gm->player2->playerEnable = true;
 		spritesSettings(0, 1, 1);
-		gm->player2->activeSkill1 = false;
 	}
 		
 	if (target == 1)
 	{
 		gm->player1->playerEnable = true;
 		spritesSettings(1, 1, 1);
-		gm->player1->activeSkill1 = false;
 	}
 }
 void Frozen::tickPower()
 {
 	if (cooldown.hasEnded() && cooldownActive == true)
+	{
 		cooldownActive = false;
+		activeSkill = false;
+		if (target == 0)
+			gm->sprites["skill1Icon1"].setTexture(gm->textures["iconPlayer1Frozen"]);
+		if (target == 1)
+			gm->sprites["skill1Icon2"].setTexture(gm->textures["iconPlayer2Frozen"]);
+	}		
 	if (frozed.hasEnded() && targetFrozed == true)
 		RemovePowerUp();		
 }
@@ -115,6 +121,7 @@ void PerfectShoot::ActivePowerUp(int who)
 	cooldownActive = true;
 	usingPower = true;
 	target = who;
+	activeSkill = true;
 
 	if (target == 0)
 	{
@@ -138,15 +145,19 @@ void PerfectShoot::ActivePowerUp(int who)
 void PerfectShoot::RemovePowerUp()
 {
 	cooldownActive = false;
-	if (target == 0)
-		gm->player1->activeSkill2 = false;
-	if (target == 1)
-		gm->player2->activeSkill2 = false;
+	activeSkill = false;
 }
 void PerfectShoot::tickPower()
 {
 	if (cooldown.hasEnded() && cooldownActive == true)
+	{
 		RemovePowerUp();
+		if (target == 0)
+			gm->sprites["skill2Icon1"].setTexture(gm->textures["iconPlayer1PerfectShoot"]);
+		if (target == 1)
+			gm->sprites["skill2Icon2"].setTexture(gm->textures["iconPlayer2PerfectShoot"]);
+	}
+		
 	if (tradeSprite.hasEnded() && usingPower == true)
 		RemoveSprite();
 }
@@ -169,17 +180,16 @@ void Vortex::ActivePowerUp(int who)
 	cooldownActive = true;
 	usingPower = true;
 	target = who;
+	activeSkill = true;
 
 	if (target == 0)
 	{
 		spectralShield.start(10);
-		gm->Player1Skill3 = true;
 		spritesSettings(0, 3, 0);
 	}
 	if (target == 1)
 	{
 		spectralShield.start(10);
-		gm->Player2Skill3 = true;
 		spritesSettings(1, 3, 0);
 	}
 }
@@ -187,20 +197,22 @@ void Vortex::RemovePowerUp()
 {
 	usingPower = false;
 	if (target == 0)
-	{
-		gm->Player1Skill3 = false;
 		spritesSettings(0, 3, 1);
-	}		
 	if (target == 1)
-	{
-		gm->Player2Skill3 = false;
 		spritesSettings(1, 3, 1);
-	}	
 }
 void Vortex::tickPower()
 {
 	if (cooldown.hasEnded() && cooldownActive == true)
+	{
 		cooldownActive = false;
+		activeSkill = false;
+		if (target == 0)
+			gm->sprites["skill3Icon1"].setTexture(gm->textures["iconPlayer1Vortex"]);
+		if (target == 1)
+			gm->sprites["skill3Icon2"].setTexture(gm->textures["iconPlayer2Vortex"]);		
+		
+	}
 	if (spectralShield.hasEnded() && usingPower == true)
 		RemovePowerUp();
 }

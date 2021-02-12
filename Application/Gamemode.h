@@ -36,7 +36,6 @@ public:
 	bool trava;	
 	clock_t timer;
 	bool travaPower = false, travaPower2 = false;
-	bool Player1Skill3 = false, Player2Skill3 = false;
 
 	void loadInfo();
 	void drawAll(RenderWindow &window);

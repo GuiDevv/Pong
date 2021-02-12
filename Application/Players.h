@@ -15,7 +15,7 @@ public:
 	class Gamemode* gm;
 	Timer time;
 	int team = 0, type;
-	bool activeBoost, activeSkill1 = false, activeSkill2 = false, activeSkill3 = false, playerEnable = true;
+	bool activeBoost, playerEnable = true;
 	Vector pos, posBackup, dir;
 	float speed, speedInicial, boostValue, limitDown, limitUp, limitLeft, limitRight;
 	class SkillSystem *skills;	

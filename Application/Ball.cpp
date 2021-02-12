@@ -25,29 +25,29 @@ void Ball::tickBall()
 
 	if (dir.y < 0)
 	{
-		if (dir.y > -0.1)
-			dir.y = -0.1;
+		if (dir.y > -0.2)
+			dir.y = -0.2;
 		else
 			dir.y = dir.y / ace;
 	}
 	if (dir.y > 0)
 	{
-		if (dir.y < 0.1)
-			dir.y = 0.1;
+		if (dir.y < 0.2)
+			dir.y = 0.2;
 		else
 			dir.y = dir.y / ace;
 	}
 	if (dir.x < 0)
 	{
-		if (dir.x > -0.1)
-			dir.x = -0.1;
+		if (dir.x > -0.2)
+			dir.x = -0.2;
 		else
 			dir.x = dir.x / ace;
 	}
 	if (dir.x > 0)
 	{
-		if (dir.x < 0.1)
-			dir.x = 0.1;
+		if (dir.x < 0.2)
+			dir.x = 0.2;
 		else
 			dir.x = dir.x / ace;
 	}

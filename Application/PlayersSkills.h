@@ -13,6 +13,7 @@ public:
 	Timer cooldown;
 	bool usingPower, cooldownActive;
 	int target;
+	bool activeSkill = false;
 
 	void spritesSettings(int type, int skill, int option);
 	virtual void ActivePowerUp(int who);
@@ -37,7 +38,7 @@ public:
 
 class PerfectShoot : public PlayersSkills {
 public:
-//tem q subir
+
 	Timer tradeSprite;
 	bool usingPower, cooldownActive;
 

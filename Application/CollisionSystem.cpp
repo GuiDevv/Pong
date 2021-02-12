@@ -48,7 +48,7 @@ void CollisionSystem::tickCollision()
 			ball->pos.x = ball->pos.x - 30;
 		ball->dir.x = ball->dir.x * -1; // <---------------
 	}
-	if (spectralBone1->intersects(*ballArea) && gm->Player1Skill3)
+	if (spectralBone1->intersects(*ballArea) && gm->player1->skills->skill3->usingPower)
 	{
 		if (ball->dir.x < 0)
 			ball->pos.x = ball->pos.x + 30;
@@ -56,7 +56,7 @@ void CollisionSystem::tickCollision()
 			ball->pos.x = ball->pos.x - 30;
 		ball->dir.x = ball->dir.x * -1;
 	}
-	if (spectralBone2->intersects(*ballArea) && gm->Player2Skill3)
+	if (spectralBone2->intersects(*ballArea) && gm->player2->skills->skill3->usingPower)
 	{
 		if (ball->dir.x < 0)
 			ball->pos.x = ball->pos.x + 30;

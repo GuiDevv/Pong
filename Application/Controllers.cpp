@@ -88,11 +88,11 @@ void ControllerIa::tickController()
 		timer.start(15);
 		block = true;
 
-		if (!controlledPlayer->activeSkill1 && random == 1)
+		if (!controlledPlayer->skills->skill1->activeSkill && random == 1)
 			controlledPlayer->skills->skill1->ActivePowerUp(1);
-		else if (!controlledPlayer->activeSkill2 && random == 2)
+		else if (!controlledPlayer->skills->skill2->activeSkill && random == 2)
 			controlledPlayer->skills->skill2->ActivePowerUp(1);
-		else if (!controlledPlayer->activeSkill3 && random == 3)
+		else if (!controlledPlayer->skills->skill3->activeSkill && random == 3)
 			controlledPlayer->skills->skill3->ActivePowerUp(1);
 
 	}

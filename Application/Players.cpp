@@ -83,9 +83,8 @@ void Players::BoostReset()
 
 void Players::UseSkill1(int type)
 {
-	if (playerEnable && !activeSkill1)
+	if (playerEnable && !skills->skill1->activeSkill)
 	{
-		activeSkill1 = true;
 		skills->skill1->ActivePowerUp(type);
 		if (type == 0)
 		gm->sprites["skill1Icon1"].setTexture(gm->textures["iconDisableFrozen"]);
@@ -96,9 +95,8 @@ void Players::UseSkill1(int type)
 
 void Players::UseSkill2(int type)
 {
-	if (playerEnable && !activeSkill2)
+	if (playerEnable && !skills->skill2->activeSkill)
 	{
-		activeSkill2 = true;
 		skills->skill2->ActivePowerUp(type);
 		if (type == 0)
 			gm->sprites["skill2Icon1"].setTexture(gm->textures["iconDisablePerfectShoot"]);
@@ -109,9 +107,8 @@ void Players::UseSkill2(int type)
 
 void Players::UseSkill3(int type)
 {
-	if (playerEnable && !activeSkill3)
+	if (playerEnable && !skills->skill3->activeSkill)
 	{
-		activeSkill3 = true;
 		skills->skill3->ActivePowerUp(type);
 		if (type == 0)
 			gm->sprites["skill3Icon1"].setTexture(gm->textures["iconDisableVortex"]);
@@ -172,31 +169,6 @@ void Players::tickPlayer()
 	}
 	dir.x = 0;
 	dir.y = 0;
-
-	if (!skills->skill1->getCooldown() && activeSkill1)
-	{
-		activeSkill1 = false;
-		if (type == 0)
-			gm->sprites["skill1Icon1"].setTexture(gm->textures["iconPlayer1Frozen"]);
-		if (type == 1)
-			gm->sprites["skill1Icon2"].setTexture(gm->textures["iconPlayer2Frozen"]);
-	}		
-	if (!skills->skill2->getCooldown() && activeSkill2)
-	{
-		activeSkill2 = false;
-		if (type == 0)
-			gm->sprites["skill2Icon1"].setTexture(gm->textures["iconPlayer1PerfectShoot"]);
-		if (type == 1)
-			gm->sprites["skill2Icon2"].setTexture(gm->textures["iconPlayer2PerfectShoot"]);
-	}		
-	if (!skills->skill3->getCooldown() && activeSkill3)
-	{
-		activeSkill3 = false;
-		if (type == 0)
-			gm->sprites["skill3Icon1"].setTexture(gm->textures["iconPlayer1Vortex"]);
-		if (type == 1)
-			gm->sprites["skill3Icon2"].setTexture(gm->textures["iconPlayer2Vortex"]);
-	}
 		
 }
 

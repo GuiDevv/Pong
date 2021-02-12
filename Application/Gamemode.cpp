@@ -80,17 +80,17 @@ void Gamemode::loadInfo()
 	sprites["skill3Icon3"].setTexture(textures["iconDisableVortex"]);
 	sprites["spriteBone1"].setTexture(textures["spectralBone1"]);
 	sprites["spriteBone2"].setTexture(textures["spectralBone2"]);
+	sprites["spriteDivision"].setTexture(textures["division1"]);
 	sprites["spriteDivision1"].setTexture(textures["division1"]);
 	sprites["spriteDivision2"].setTexture(textures["division2"]);
 	sprites["spriteDivision3"].setTexture(textures["division3"]);
 
-	tradeMode("Singleplayer");
-	/*tradeMode("Multiplayer");*/
+	/*tradeMode("Singleplayer");*/
+	tradeMode("Multiplayer");
 
 	fonts["font1"].loadFromFile("Assets\\impact-1.ttf");	
 
 	ball.BallReset();
-	ball.RandomSpeeds(Random(10), Random(10));
 	text = Text("Pontuação: " + to_string(winsPlayer1) + " | " + to_string(winsPlayer2), fonts["font1"], 35);
 	text.setPosition(580, 0);
 
@@ -101,6 +101,7 @@ void Gamemode::loadInfo()
 
 void Gamemode::drawAll(RenderWindow &window)
 {	
+	sprites["spriteDivision0"].setPosition(650, 0);
 	sprites["spriteDivision1"].setPosition(650, 0);
 	sprites["spriteDivision2"].setPosition(650, 0);
 	sprites["spriteDivision3"].setPosition(650, 0);
@@ -129,14 +130,14 @@ void Gamemode::drawAll(RenderWindow &window)
 		sprites["spriteBall"].setTexture(textures["ball2"]);
 	if (ball.color == 3)
 		sprites["spriteBall"].setTexture(textures["ball3"]);
-	if (ball.pos.x > 680 && ball.color != 1)
-		sprites["spriteDivision1"] = sprites["spriteDivision3"];
-	if (ball.pos.x < 670 && ball.color != 1)
-		sprites["spriteDivision1"] = sprites["spriteDivision2"];
 	if (ball.color == 1)
-		sprites["spriteDivision1"] = sprites["spriteDivision1"];
+		sprites["spriteDivision"] = sprites["spriteDivision1"];
+	if (ball.pos.x > 680 && ball.color != 1)
+		sprites["spriteDivision"] = sprites["spriteDivision3"];
+	if (ball.pos.x < 670 && ball.color != 1)
+		sprites["spriteDivision"] = sprites["spriteDivision2"];
 
-	window.draw(sprites["spriteDivision1"]);
+	window.draw(sprites["spriteDivision"]);
 	window.draw(sprites["spritePlayer1"]);
 	window.draw(sprites["spritePlayer2"]);
 	window.draw(sprites["spriteWall1"]);
@@ -150,9 +151,9 @@ void Gamemode::drawAll(RenderWindow &window)
 	window.draw(sprites["skill1Icon2"]);
 	window.draw(sprites["skill2Icon2"]);
 	window.draw(sprites["skill3Icon2"]);
-	if(Player1Skill3)
+	if(player1->skills->skill3->usingPower)
 	window.draw(sprites["spriteBone1"]);
-	if (Player2Skill3)
+	if (player2->skills->skill3->usingPower)
 	window.draw(sprites["spriteBone2"]);
 	window.draw(text);
 	
@@ -186,6 +187,7 @@ void Gamemode::controlGame()
 	{
 		travaPower2 = false;
 	}
+
 }
 
 void Gamemode::givePoints(int who)
