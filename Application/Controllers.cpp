@@ -49,11 +49,11 @@ void ControllerPlayer::tickController()
 		controlledPlayer->Boost();
 
 	if (Keyboard::isKeyPressed(inputs.skill1))
-		controlledPlayer->UseSkill1(type);
+		controlledPlayer->UseSkill1();
 	else if (Keyboard::isKeyPressed(inputs.skill2))
-		controlledPlayer->UseSkill2(type);
+		controlledPlayer->UseSkill2();
 	else if (Keyboard::isKeyPressed(inputs.skill3))
-		controlledPlayer->UseSkill3(type);
+		controlledPlayer->UseSkill3();
 }
 
 void ControllerIa::setInfo(Players& w)
@@ -89,11 +89,11 @@ void ControllerIa::tickController()
 		block = true;
 
 		if (!controlledPlayer->skills->skill1->activeSkill && random == 1)
-			controlledPlayer->skills->skill1->ActivePowerUp(1);
+			controlledPlayer->skills->skill1->ActivePowerUp();
 		else if (!controlledPlayer->skills->skill2->activeSkill && random == 2)
-			controlledPlayer->skills->skill2->ActivePowerUp(1);
+			controlledPlayer->skills->skill2->ActivePowerUp();
 		else if (!controlledPlayer->skills->skill3->activeSkill && random == 3)
-			controlledPlayer->skills->skill3->ActivePowerUp(1);
+			controlledPlayer->skills->skill3->ActivePowerUp();
 
 	}
 	if (block && timer.hasEnded())

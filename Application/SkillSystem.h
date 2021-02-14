@@ -1,13 +1,14 @@
 #pragma once
-#include "PlayersSkills.h"
+#include "Skills.h"
 class SkillSystem
 {
 public:
 
 	class Gamemode* gamemode;
-	class PlayersSkills* skill1, * skill2, * skill3;
+	class Skills* skill1, * skill2, * skill3;
+	class Players* controlledPlayer;
 
-	void getGamemode(Gamemode& gm);
+	void getGamemode(Gamemode& gm, Players& p);
 	void setSkillsGamemode();
 	void tickSkills();
 };

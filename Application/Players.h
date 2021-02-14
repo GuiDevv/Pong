@@ -14,11 +14,11 @@ public:
 	
 	class Gamemode* gm;
 	Timer time;
-	int team = 0, type;
 	bool activeBoost, playerEnable = true;
 	Vector pos, posBackup, dir;
 	float speed, speedInicial, boostValue, limitDown, limitUp, limitLeft, limitRight;
 	class SkillSystem *skills;	
+	class Players* playerInimigo;
 
 	void Down();
 	void Up();
@@ -26,14 +26,35 @@ public:
 	void Right();
 	void Boost();
 	void BoostReset();
-	void UseSkill1(int type);
-	void UseSkill2(int type);
-	void UseSkill3(int type);
-	void setInfo(int tipo, int t, Gamemode& g); // Tipo (0) - Player | Tipo (1) - IA
 	void tickPlayer();
 	void handleInput(Vector v);
+	virtual void UseSkill1();
+	virtual void UseSkill2();
+	virtual void UseSkill3();
+	virtual void setInfo(Gamemode& g);
+	virtual void spriteAccess(int skill, int typeAccess, int icon);
+};
 
+class PlayerBlue : public Players
+{
+public:
 
+	void UseSkill1();
+	void UseSkill2();
+	void UseSkill3();
+	void setInfo(Gamemode& g);
+	void spriteAccess(int skill, int typeAccess, int icon);
+};
+
+class PlayerRed : public Players
+{
+public:
+
+	void UseSkill1();
+	void UseSkill2();
+	void UseSkill3();
+	void setInfo(Gamemode& g);
+	void spriteAccess(int skill, int typeAccess, int icon);
 };
 
 #endif // !_player

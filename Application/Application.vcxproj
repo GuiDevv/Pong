@@ -168,7 +168,7 @@
     <ClCompile Include="CollisionSystem.cpp" />
     <ClCompile Include="Controllers.cpp" />
     <ClCompile Include="Gamemode.cpp" />
-    <ClCompile Include="PlayersSkills.cpp" />
+    <ClCompile Include="Skills.cpp" />
     <ClCompile Include="SkillSystem.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Vector.cpp" />
@@ -179,7 +179,7 @@
     <ClInclude Include="CollisionSystem.h" />
     <ClInclude Include="Controllers.h" />
     <ClInclude Include="Gamemode.h" />
-    <ClInclude Include="PlayersSkills.h" />
+    <ClInclude Include="Skills.h" />
     <ClInclude Include="SkillSystem.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Vector.h" />

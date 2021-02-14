@@ -7,10 +7,12 @@ Gamemode::Gamemode()
 
 void Gamemode::loadInfo()
 {
-	player1 = new Players();
-	player1->setInfo(0, 0, *this);	
-	player2 = new Players();
-	player2->setInfo(1, 1, *this);
+	player1 = new PlayerBlue();
+	player1->setInfo(*this);		
+	player2 = new PlayerRed();
+	player2->setInfo(*this);
+	player1->playerInimigo = player2;
+	player2->playerInimigo = player1;
 	ball.setInfo(675, 370);
 	ball.color = 1;
 	player1Area = IntRect(player1->pos.x, player1->pos.y, 100, 104);

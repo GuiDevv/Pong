@@ -4,7 +4,7 @@
 
 #include "Players.h"
 #include "Ball.h"
-#include "PlayersSkills.h"
+#include "Skills.h"
 #include "Gamemode.h"
 #include <ctime>
 #include <SFML/Audio.hpp>

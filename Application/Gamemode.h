@@ -7,7 +7,7 @@
 #include <ctime>
 #include "Players.h"
 #include "Ball.h"
-#include "PlayersSkills.h"
+#include "Skills.h"
 #include "Controllers.h"
 #include "CollisionSystem.h"
 #include "Vector.h"

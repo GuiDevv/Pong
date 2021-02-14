@@ -6,7 +6,7 @@
 #include "Timer.h"
 #include <math.h>
 
-class PlayersSkills // Classe abstrata 
+class Skills // Classe abstrata 
 {
 public:
 	class Gamemode* gm;
@@ -14,35 +14,34 @@ public:
 	bool usingPower, cooldownActive;
 	int target;
 	bool activeSkill = false;
+	class Players* player;
 
-	void spritesSettings(int type, int skill, int option);
-	virtual void ActivePowerUp(int who);
+	virtual void ActivePowerUp();
 	virtual void RemovePowerUp();
 	virtual void tickPower();
 	virtual bool getCooldown();
 
 };
 
-class Frozen : public PlayersSkills{
+class Frozen : public Skills{
 public:
 
 	Timer  frozed;
 	bool targetFrozed;
 
-	void ActivePowerUp(int who);
+	void ActivePowerUp();
 	void RemovePowerUp();
 	void tickPower();
 	bool getCooldown();
 
 };
 
-class PerfectShoot : public PlayersSkills {
+class PerfectShoot : public Skills {
 public:
 
 	Timer tradeSprite;
-	bool usingPower, cooldownActive;
 
-	void ActivePowerUp(int who);
+	void ActivePowerUp();
 	void RemovePowerUp();
 	void tickPower();
 	bool getCooldown();
@@ -50,12 +49,12 @@ public:
 
 };
 
-class Vortex : public PlayersSkills {
+class Vortex : public Skills {
 public:
 
 	Timer spectralShield;	
 
-	void ActivePowerUp(int who);
+	void ActivePowerUp();
 	void RemovePowerUp();
 	void tickPower();
 	bool getCooldown();
