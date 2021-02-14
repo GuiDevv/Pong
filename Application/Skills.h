@@ -6,7 +6,7 @@
 #include "Timer.h"
 #include <math.h>
 
-class Skills // Classe abstrata 
+class Skills
 {
 public:
 	class Gamemode* gm;
@@ -19,7 +19,7 @@ public:
 	virtual void ActivePowerUp();
 	virtual void RemovePowerUp();
 	virtual void tickPower();
-	virtual bool getCooldown();
+	bool getCooldown();
 
 };
 
@@ -32,7 +32,6 @@ public:
 	void ActivePowerUp();
 	void RemovePowerUp();
 	void tickPower();
-	bool getCooldown();
 
 };
 
@@ -44,7 +43,6 @@ public:
 	void ActivePowerUp();
 	void RemovePowerUp();
 	void tickPower();
-	bool getCooldown();
 	void RemoveSprite();
 
 };
@@ -57,7 +55,6 @@ public:
 	void ActivePowerUp();
 	void RemovePowerUp();
 	void tickPower();
-	bool getCooldown();
 
 };
 

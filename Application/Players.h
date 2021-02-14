@@ -28,9 +28,9 @@ public:
 	void BoostReset();
 	void tickPlayer();
 	void handleInput(Vector v);
-	virtual void UseSkill1();
-	virtual void UseSkill2();
-	virtual void UseSkill3();
+	void UseSkill1();
+	void UseSkill2();
+	void UseSkill3();
 	virtual void setInfo(Gamemode& g);
 	virtual void spriteAccess(int skill, int typeAccess, int icon);
 };
@@ -39,9 +39,6 @@ class PlayerBlue : public Players
 {
 public:
 
-	void UseSkill1();
-	void UseSkill2();
-	void UseSkill3();
 	void setInfo(Gamemode& g);
 	void spriteAccess(int skill, int typeAccess, int icon);
 };
@@ -50,9 +47,6 @@ class PlayerRed : public Players
 {
 public:
 
-	void UseSkill1();
-	void UseSkill2();
-	void UseSkill3();
 	void setInfo(Gamemode& g);
 	void spriteAccess(int skill, int typeAccess, int icon);
 };

@@ -11,7 +11,7 @@ void Skills::tickPower()
 }
 bool Skills::getCooldown()
 {
-	return false;
+	return cooldownActive;
 }
 
 void Frozen::ActivePowerUp()
@@ -28,7 +28,7 @@ void Frozen::RemovePowerUp()
 {
 	targetFrozed = false;
 	player->playerInimigo->playerEnable = true;
-	player->spriteAccess(1, 1, 0);
+	player->spriteAccess(1, 1, -1);
 }
 void Frozen::tickPower()
 {
@@ -40,10 +40,6 @@ void Frozen::tickPower()
 	}		
 	if (frozed.hasEnded() && targetFrozed == true)
 		RemovePowerUp();		
-}
-bool Frozen::getCooldown()
-{
-	return cooldownActive;
 }
 
 void PerfectShoot::ActivePowerUp()
@@ -75,14 +71,10 @@ void PerfectShoot::tickPower()
 	if (tradeSprite.hasEnded() && usingPower == true)
 		RemoveSprite();
 }
-bool PerfectShoot::getCooldown()
-{
-	return cooldownActive;
-}
 void PerfectShoot::RemoveSprite()
 {
 	usingPower = false;
-	player->spriteAccess(2, 1, 0);
+	player->spriteAccess(2, 1, -1);
 }
 
 void Vortex::ActivePowerUp()
@@ -97,7 +89,7 @@ void Vortex::ActivePowerUp()
 void Vortex::RemovePowerUp()
 {
 	usingPower = false;
-	player->spriteAccess(3, 1, 0);
+	player->spriteAccess(3, 1, -1);
 }
 void Vortex::tickPower()
 {
@@ -109,8 +101,4 @@ void Vortex::tickPower()
 	}
 	if (spectralShield.hasEnded() && usingPower == true)
 		RemovePowerUp();
-}
-bool Vortex::getCooldown()
-{
-	return cooldownActive;
 }

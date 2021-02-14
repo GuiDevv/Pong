@@ -47,12 +47,18 @@ void Players::BoostReset()
 }
 void Players::UseSkill1()
 {
+	if (playerEnable && !skills->skill1->activeSkill)
+		skills->skill1->ActivePowerUp();
 }
 void Players::UseSkill2()
 {	
+	if (playerEnable && !skills->skill2->activeSkill)
+		skills->skill2->ActivePowerUp();
 }
 void Players::UseSkill3()
 {	
+	if (playerEnable && !skills->skill3->activeSkill)
+		skills->skill3->ActivePowerUp();
 }
 void Players::setInfo(Gamemode& g)
 {
@@ -61,38 +67,31 @@ void Players::spriteAccess(int skill, int typeAccess, int icon)
 {
 }
 void Players::tickPlayer()
-{		
+{			
+	if (time.hasEnded() && activeBoost == true)
+	{
+		BoostReset();
+		activeBoost = false;
+	}
+	skills->tickSkills();
+	dir.x = 0;
+	dir.y = 0;
 }
 void Players::handleInput(Vector v)
 {
-	
-}
-
-void PlayerBlue::UseSkill1()
-{
-	if (playerEnable && !skills->skill1->activeSkill)
+	if (v.x != 0)
 	{
-		skills->skill1->ActivePowerUp();
-		gm->sprites["skill1Icon1"].setTexture(gm->textures["iconDisableFrozen"]);
+		if (v.x > 0)
+			Right();
+		else
+			Left();
 	}
-}
-
-void PlayerBlue::UseSkill2()
-{
-	if (playerEnable && !skills->skill2->activeSkill)
+	if (v.y != 0)
 	{
-		skills->skill2->ActivePowerUp();
-		gm->sprites["skill2Icon1"].setTexture(gm->textures["iconDisablePerfectShoot"]);
-	}
-}
-
-void PlayerBlue::UseSkill3()
-{
-	if (playerEnable && !skills->skill3->activeSkill)
-	{
-		skills->skill3->ActivePowerUp();
-		gm->sprites["skill3Icon1"].setTexture(gm->textures["iconDisableVortex"]);
-
+		if (v.y > 0)
+			Up();
+		else
+			Down();
 	}
 }
 
@@ -114,7 +113,6 @@ void PlayerBlue::setInfo(Gamemode& g)
 	skills->controlledPlayer = this;
 	skills->setSkillsGamemode();
 }
-
 void PlayerBlue::spriteAccess(int skill, int typeAccess, int icon)
 {
 	if (skill == 1)
@@ -123,6 +121,8 @@ void PlayerBlue::spriteAccess(int skill, int typeAccess, int icon)
 			gm->sprites["spritePlayer2"] = gm->sprites["spritePlayer2Frozen"];
 		if (typeAccess == 1) // Voltar para a original
 			gm->sprites["spritePlayer2"] = gm->sprites["spriteSkull2"];
+		if (icon == 0) // Muda o Icon da skill para disable
+			gm->sprites["skill1Icon1"].setTexture(gm->textures["iconDisableFrozen"]);
 		if (icon == 1) // Muda o Icon da skill para enable
 			gm->sprites["skill1Icon1"].setTexture(gm->textures["iconPlayer1Frozen"]);
 	}
@@ -132,6 +132,8 @@ void PlayerBlue::spriteAccess(int skill, int typeAccess, int icon)
 			gm->sprites["spritePlayer1"] = gm->sprites["spritePlayer1PerfectShoot"];
 		if (typeAccess == 1) // Voltar para a original
 			gm->sprites["spritePlayer1"] = gm->sprites["spriteSkull1"];
+		if (icon == 0) // Muda o Icon da skill para disable
+			gm->sprites["skill2Icon1"].setTexture(gm->textures["iconDisablePerfectShoot"]);
 		if (icon == 1) // Muda o Icon da skill para enable
 			gm->sprites["skill2Icon1"].setTexture(gm->textures["iconPlayer1PerfectShoot"]);
 	}
@@ -141,36 +143,11 @@ void PlayerBlue::spriteAccess(int skill, int typeAccess, int icon)
 			gm->sprites["spritePlayer1"] = gm->sprites["spritePlayer1Vortex"];
 		if (typeAccess == 1) // Voltar para a original
 			gm->sprites["spritePlayer1"] = gm->sprites["spriteSkull1"];
+		if (icon == 0) // Muda o Icon da skill para disable
+			gm->sprites["skill3Icon1"].setTexture(gm->textures["iconDisableVortex"]);
 		if (icon == 1) // Muda o Icon da skill para enable
 			gm->sprites["skill3Icon1"].setTexture(gm->textures["iconPlayer1Vortex"]);			
 	}		
-}
-
-void PlayerRed::UseSkill1()
-{
-	if (playerEnable && !skills->skill1->activeSkill)
-	{
-		skills->skill1->ActivePowerUp();
-		gm->sprites["skill1Icon2"].setTexture(gm->textures["iconDisableFrozen"]);
-	}
-}
-
-void PlayerRed::UseSkill2()
-{
-	if (playerEnable && !skills->skill2->activeSkill)
-	{
-		skills->skill2->ActivePowerUp();
-		gm->sprites["skill2Icon2"].setTexture(gm->textures["iconDisablePerfectShoot"]);
-	}
-}
-
-void PlayerRed::UseSkill3()
-{
-	if (playerEnable && !skills->skill3->activeSkill)
-	{
-		skills->skill3->ActivePowerUp();
-		gm->sprites["skill3Icon2"].setTexture(gm->textures["iconDisableVortex"]);
-	}
 }
 
 void PlayerRed::setInfo(Gamemode& g)
@@ -192,7 +169,6 @@ void PlayerRed::setInfo(Gamemode& g)
 	skills->setSkillsGamemode();
 
 }
-
 void PlayerRed::spriteAccess(int skill, int typeAccess, int icon)
 {
 	if (skill == 1)
@@ -201,6 +177,10 @@ void PlayerRed::spriteAccess(int skill, int typeAccess, int icon)
 			gm->sprites["spritePlayer1"] = gm->sprites["spritePlayer1Frozen"];
 		if (typeAccess == 1) // Voltar para a original
 			gm->sprites["spritePlayer1"] = gm->sprites["spriteSkull1"];
+		if (icon == 0) // Muda o Icon da skill para disable
+			gm->sprites["skill1Icon2"].setTexture(gm->textures["iconDisableFrozen"]);
+		if (icon == 1) // Muda o Icon da skill para enable
+			gm->sprites["skill1Icon2"].setTexture(gm->textures["iconPlayer2Frozen"]);
 	}
 	if (skill == 2)
 	{
@@ -208,6 +188,10 @@ void PlayerRed::spriteAccess(int skill, int typeAccess, int icon)
 			gm->sprites["spritePlayer2"] = gm->sprites["spritePlayer2PerfectShoot"];
 		if (typeAccess == 1) // Voltar para a original
 			gm->sprites["spritePlayer2"] = gm->sprites["spriteSkull2"];
+		if (icon == 0) // Muda o Icon da skill para disable
+			gm->sprites["skill2Icon2"].setTexture(gm->textures["iconDisablePerfectShoot"]);
+		if (icon == 1) // Muda o Icon da skill para enable
+			gm->sprites["skill2Icon2"].setTexture(gm->textures["iconPlayer2PerfectShoot"]);
 	}
 	if (skill == 3)
 	{
@@ -215,6 +199,10 @@ void PlayerRed::spriteAccess(int skill, int typeAccess, int icon)
 			gm->sprites["spritePlayer2"] = gm->sprites["spritePlayer2Vortex"];
 		if (typeAccess == 1) // Voltar para a original
 			gm->sprites["spritePlayer2"] = gm->sprites["spriteSkull2"];
+		if (icon == 0) // Muda o Icon da skill para disable
+			gm->sprites["skill3Icon2"].setTexture(gm->textures["iconDisableVortex"]);
+		if (icon == 1) // Muda o Icon da skill para enable
+			gm->sprites["skill3Icon2"].setTexture(gm->textures["iconPlayer2Vortex"]);
 	}	
 	
 }
