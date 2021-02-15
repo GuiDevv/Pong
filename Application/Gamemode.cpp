@@ -15,13 +15,10 @@ void Gamemode::loadInfo()
 	player2->playerInimigo = player1;
 	ball.setInfo(675, 370);
 	ball.color = 1;
-	player1Area = IntRect(player1->pos.x, player1->pos.y, 100, 104);
-	player2Area = IntRect(player2->pos.x, player2->pos.y, 100, 104);
-	wall1Area = IntRect(0, 0, 80, 273);
-	wall2Area = IntRect(0, 530, 80, 273);
-	wall3Area = IntRect(1320, 0, 80, 273);
-	wall4Area = IntRect(1320, 530, 80, 273);
-	ballArea = IntRect(ball.pos.getVector().x, ball.pos.getVector().y, 30, 34);
+	wall1.setInfo(IntRect(0, 0, 80, 273));
+	wall2.setInfo(IntRect(0, 530, 80, 273));
+	wall3.setInfo(IntRect(1320, 0, 80, 273));
+	wall4.setInfo(IntRect(1320, 530, 80, 273);
 	SpectralBone1 = IntRect(0, 277, 80, 250);
 	SpectralBone2 = IntRect(1320, 277, 80, 250);
 	collisions = new CollisionSystem;
@@ -165,13 +162,6 @@ void Gamemode::drawAll(RenderWindow &window)
 void Gamemode::controlGame()
 {
 	ticksControl();
-
-	player1Area.left = player1->pos.x;
-	player1Area.top = player1->pos.y;
-	player2Area.left = player2->pos.x;
-	player2Area.top = player2->pos.y;
-	ballArea.left = ball.pos.getVector().x;
-	ballArea.top = ball.pos.getVector().y;	
 
 	if (ball.pos.getVector().x > 1320)
 		givePoints(0);

@@ -14,6 +14,12 @@ bool Skills::getCooldown()
 	return cooldownActive;
 }
 
+Frozen::Frozen(Players& p, Gamemode& gm)
+{
+	player = &p;
+	this->gm = &gm;
+}
+
 void Frozen::ActivePowerUp()
 {
 	cooldown.start(30);	
@@ -40,6 +46,12 @@ void Frozen::tickPower()
 	}		
 	if (frozed.hasEnded() && targetFrozed == true)
 		RemovePowerUp();		
+}
+
+PerfectShoot::PerfectShoot(Players& p, Gamemode& gm)
+{
+	player = &p;
+	this->gm = &gm;
 }
 
 void PerfectShoot::ActivePowerUp()
@@ -75,6 +87,12 @@ void PerfectShoot::RemoveSprite()
 {
 	usingPower = false;
 	player->spriteAccess(2, 1, -1);
+}
+
+Vortex::Vortex(Players& p, Gamemode& gm)
+{
+	player = &p;
+	this->gm = &gm;
 }
 
 void Vortex::ActivePowerUp()

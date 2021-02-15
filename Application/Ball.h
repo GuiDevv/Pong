@@ -7,10 +7,12 @@ public:
 	Ball();
 
 	Vector pos, dir, posIni;
+	IntRect ballArea;
 	float speed;
 	double ace = 1.0007;
 	bool collision;
 	int boost, color;
+
 
 	void testCollision(Vector v);
 	void tickBall();

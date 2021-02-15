@@ -5,6 +5,7 @@
 #include "Timer.h"
 #include "Vector.h"
 #include "SkillSystem.h"
+#include "Collision.h"
 
 using namespace sf;
 
@@ -16,9 +17,11 @@ public:
 	Timer time;
 	bool activeBoost, playerEnable = true;
 	Vector pos, posBackup, dir;
-	float speed, speedInicial, boostValue, limitDown, limitUp, limitLeft, limitRight;
+	float speed, speedInicial, boostValue, limitDown, limitUp, limitLeft, limitRight, color;
 	class SkillSystem *skills;	
+	class Collision* collision;
 	class Players* playerInimigo;
+	IntRect playerArea;
 
 	void Down();
 	void Up();

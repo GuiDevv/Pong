@@ -52,11 +52,15 @@ void Ball::tickBall()
 			dir.x = dir.x / ace;
 	}
 
+	ballArea.left = pos.getVector().x;
+	ballArea.top = pos.getVector().y;
+
 }
 
 void Ball::setInfo(float xInicial, float yInicial)
 {
 	posIni = { xInicial, yInicial };
+	ballArea = IntRect(pos.getVector().x, pos.getVector().y, 30, 34);
 }
 
 void Ball::BallReset()

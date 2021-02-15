@@ -2,24 +2,16 @@
 #ifndef _collisionSystem
 #define _collisionSystem
 #include "Gamemode.h"
-
-using namespace sf;
-
-class Players;
+#include "Collision.h"
 
 class CollisionSystem
 {
 public:
 
-	class Gamemode* gm;
-	int LimitUp, LimitDown;
-	Ball* ball;
-	Players *play1, *play2;
-	IntRect* play1Area, * play2Area, * ballArea, * wall1Area, * wall2Area, * wall3Area, * wall4Area, * spectralBone1, * spectralBone2;
+	vector <Collision> collisions;
 
-	void setAll();
+	void pushVector(Collision &c);
 	void tickCollision();
-	void stabilizeBall();
 
 };
 #endif // !_collisionSystem
