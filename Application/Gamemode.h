@@ -11,6 +11,7 @@
 #include "Controllers.h"
 #include "CollisionSystem.h"
 #include "Vector.h"
+#include "Wall.h"
 #include <Windows.h>
 
 using namespace std;
@@ -29,8 +30,9 @@ public:
 	map<string, Font> fonts;
 	map<string, Controllers*> controllers;	
 	Players *player1, *player2;
+	Wall wall1, wall2, wall3, wall4;
 	Ball ball;
-	IntRect player1Area, player2Area, ballArea, wall1Area, wall2Area, wall3Area, wall4Area, SpectralBone1, SpectralBone2;
+	IntRect SpectralBone1, SpectralBone2;
 	int winsPlayer1, winsPlayer2;
 	Text text;
 	bool trava;	

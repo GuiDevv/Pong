@@ -19,6 +19,7 @@ public:
 	float speed, speedInicial, boostValue, limitDown, limitUp, limitLeft, limitRight;
 	class SkillSystem *skills;	
 	class Players* playerInimigo;
+	IntRect playerArea;
 
 	void Down();
 	void Up();

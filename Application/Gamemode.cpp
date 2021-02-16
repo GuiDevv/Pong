@@ -14,14 +14,8 @@ void Gamemode::loadInfo()
 	player1->playerInimigo = player2;
 	player2->playerInimigo = player1;
 	ball.setInfo(675, 370);
-	ball.color = 1;
-	player1Area = IntRect(player1->pos.x, player1->pos.y, 100, 104);
-	player2Area = IntRect(player2->pos.x, player2->pos.y, 100, 104);
-	wall1Area = IntRect(0, 0, 80, 273);
-	wall2Area = IntRect(0, 530, 80, 273);
-	wall3Area = IntRect(1320, 0, 80, 273);
-	wall4Area = IntRect(1320, 530, 80, 273);
-	ballArea = IntRect(ball.pos.getVector().x, ball.pos.getVector().y, 30, 34);
+	ball.color = 1;	
+	
 	SpectralBone1 = IntRect(0, 277, 80, 250);
 	SpectralBone2 = IntRect(1320, 277, 80, 250);
 	collisions = new CollisionSystem;
@@ -99,6 +93,11 @@ void Gamemode::loadInfo()
 	winsPlayer1 = 0;
 	winsPlayer2 = 0;
 	trava = 0;	
+
+	wall1.setInfo(sprites["spriteWall1"], Vector(0, 0), IntRect(0, 0, 80, 273));
+	wall2.setInfo(sprites["spriteWall2"], Vector(0, 530), IntRect(0, 530, 80, 273));
+	wall3.setInfo(sprites["spriteWall3"], Vector(1320, 0), IntRect(1320, 0, 80, 273));
+	wall4.setInfo(sprites["spriteWall4"], Vector(1320, 530), IntRect(1320, 530, 80, 273));
 }
 
 void Gamemode::drawAll(RenderWindow &window)
@@ -109,10 +108,6 @@ void Gamemode::drawAll(RenderWindow &window)
 	sprites["spriteDivision3"].setPosition(650, 0);
 	sprites["spritePlayer1"].setPosition(player1->pos.x, player1->pos.y);
 	sprites["spritePlayer2"].setPosition(player2->pos.x, player2->pos.y);
-	sprites["spriteWall1"].setPosition(0, 0);
-	sprites["spriteWall2"].setPosition(0, 530);
-	sprites["spriteWall3"].setPosition(1320, 0);
-	sprites["spriteWall4"].setPosition(1320, 530);
 	sprites["spriteBall"].setPosition(ball.pos.getVector().x, ball.pos.getVector().y);
 	sprites["spriteBone1"].setPosition(0, 277);
 	sprites["spriteBone2"].setPosition(1320, 277);
@@ -142,10 +137,10 @@ void Gamemode::drawAll(RenderWindow &window)
 	window.draw(sprites["spriteDivision"]);
 	window.draw(sprites["spritePlayer1"]);
 	window.draw(sprites["spritePlayer2"]);
-	window.draw(sprites["spriteWall1"]);
-	window.draw(sprites["spriteWall2"]);
-	window.draw(sprites["spriteWall3"]);
-	window.draw(sprites["spriteWall4"]);
+	window.draw(*wall1.sprite);
+	window.draw(*wall2.sprite);
+	window.draw(*wall3.sprite);
+	window.draw(*wall4.sprite);
 	window.draw(sprites["spriteBall"]);
 	window.draw(sprites["skill1Icon1"]);
 	window.draw(sprites["skill2Icon1"]);
@@ -165,13 +160,6 @@ void Gamemode::drawAll(RenderWindow &window)
 void Gamemode::controlGame()
 {
 	ticksControl();
-
-	player1Area.left = player1->pos.x;
-	player1Area.top = player1->pos.y;
-	player2Area.left = player2->pos.x;
-	player2Area.top = player2->pos.y;
-	ballArea.left = ball.pos.getVector().x;
-	ballArea.top = ball.pos.getVector().y;	
 
 	if (ball.pos.getVector().x > 1320)
 		givePoints(0);

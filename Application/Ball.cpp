@@ -52,11 +52,15 @@ void Ball::tickBall()
 			dir.x = dir.x / ace;
 	}
 
+	ballArea.left = pos.getVector().x;
+	ballArea.top = pos.getVector().y;
+
 }
 
 void Ball::setInfo(float xInicial, float yInicial)
 {
 	posIni = { xInicial, yInicial };
+	ballArea = IntRect(pos.getVector().x, pos.getVector().y, 30, 34);
 }
 
 void Ball::BallReset()
@@ -82,34 +86,4 @@ void Ball::RandomSpeeds(float velocityX, float velocityY)
 	{
 		dir.getVector().y = 0.1;
 	}
-}
-
-void Ball::Boost()
-{
-	/*if (boost == 0)
-	{
-		dir.getVector().y -= (aceY / 3);
-		dir.getVector().x -= (aceX / 3);
-		boost = 4;
-	}
-	if (boost == 1)
-	{
-		dir.getVector().y += (aceY / 3);
-		dir.getVector().x += (aceX / 3);
-		boost = 4;
-	}
-	if (boost == 2)
-	{
-		dir.getVector().y -= aceY;
-		dir.getVector().y *= -1;
-		dir.getVector().x -= aceX;
-		boost = 4;
-	}
-	if (boost == 3)
-	{
-		dir.getVector().y += aceY;
-		dir.getVector().y *= -1;
-		dir.getVector().x += aceX;
-		boost = 4;
-	}*/
 }
