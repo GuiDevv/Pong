@@ -5,7 +5,7 @@
 #include "Gamemode.h"
 #include "Timer.h"
 #include <math.h>
-
+// 
 class Skills
 {
 public:
@@ -30,6 +30,7 @@ public:
 	Timer  frozed;
 	bool targetFrozed;
 
+	Frozen(Players &p, Gamemode &gm);
 	void ActivePowerUp();
 	void RemovePowerUp();
 	void tickPower();
@@ -41,6 +42,7 @@ public:
 
 	Timer tradeSprite;
 
+	PerfectShoot(Players& p, Gamemode& gm);
 	void ActivePowerUp();
 	void RemovePowerUp();
 	void tickPower();
@@ -53,6 +55,7 @@ public:
 
 	Timer spectralShield;	
 
+	Vortex(Players& p, Gamemode& gm);
 	void ActivePowerUp();
 	void RemovePowerUp();
 	void tickPower();

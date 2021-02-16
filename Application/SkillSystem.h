@@ -1,5 +1,7 @@
 #pragma once
 #include "Skills.h"
+#include <vector>
+
 class SkillSystem
 {
 public:
