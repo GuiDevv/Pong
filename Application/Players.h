@@ -5,7 +5,6 @@
 #include "Timer.h"
 #include "Vector.h"
 #include "SkillSystem.h"
-#include "Collision.h"
 
 using namespace sf;
 

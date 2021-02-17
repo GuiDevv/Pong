@@ -7,45 +7,7 @@
 using namespace std;
 using namespace sf;
 
-
-
-
-class ColSystem{
-public:
-    static list<class ColInstance*> instances;
-    void tick(){
-        //check
-        instances
-    }
-};
-
-
-class ColInstance {
-public:
-    IntRect rec;
-    ColInstance() {
-        ColSystem::instances.push_back(this);
-    }
-    ~ColInstance() {
-        ColSystem::instances.erase(this);
-    }
-    virtual void onCollision() {}
-};
-
-class Ball : 
-    public ColInstance {
-public:
-    
-    void onCollision() {
-    }
-};
-
 int main(){
-
-
-
-
-
 
     RenderWindow window(VideoMode(1400, 800), "SFML window");
     
