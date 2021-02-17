@@ -11,5 +11,7 @@ public:
 	Sprite* sprite;
 
 	void setInfo(Sprite& spr, Vector p, IntRect w);
+	void beginCollision();
+	void endCollision();
 };
 

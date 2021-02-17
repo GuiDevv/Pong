@@ -6,3 +6,11 @@ void Wall::setInfo(Sprite& spr, Vector p, IntRect w)
 	sprite->setPosition(p.x, p.y);
 	wall = w;
 }
+
+void Wall::beginCollision()
+{
+}
+
+void Wall::endCollision()
+{
+}

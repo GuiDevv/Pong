@@ -11,6 +11,7 @@
 #include <SFML/Graphics.hpp>
 
 class Players;
+class Ball;
 
 class Controllers
 {

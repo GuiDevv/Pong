@@ -87,3 +87,44 @@ void Ball::RandomSpeeds(float velocityX, float velocityY)
 		dir.getVector().y = 0.1;
 	}
 }
+
+
+//struct A {
+//	int a;
+//	float b;
+//};
+//
+//A* find(vector<A*> vec, bool(*fnx)(A*)) {
+//	for (auto& a : vec) {
+//		if (fnx(a))
+//			return a;
+//	}
+//}
+
+
+//void Ball::beginCollision(Collision* other)
+//{
+//	if (dir.x < 0)
+//		pos.x = pos.x + 30;
+//	if (dir.x > 0)
+//		pos.x = pos.x - 30;
+//		dir.x = dir.x * -1; 
+//	/*vector<A*> vec;
+//	find(vec, [](A* w)->bool {
+//		return w->a == 1;
+//		}
+//	);
+//	find(vec, [](A* w)->bool {
+//		return w->b == 1;
+//		}
+//	);
+//
+//	cast 
+//	reinterpret_cast<>();
+//	const_cast<>();
+//	cast*/
+//}
+//
+//void Ball::endCollision(Collision* other)
+//{
+//}

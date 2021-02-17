@@ -1,22 +1,28 @@
 #pragma once
 #ifndef _collisionSystem
 #define _collisionSystem
-#include "Gamemode.h"
-
+#include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
+#include <vector>
+using namespace std;
 using namespace sf;
-
-class Players;
-
-class CollisionSystem
+class Collision
 {
 public:
 
-	class Gamemode* gm;
-	int LimitUp, LimitDown;
+	FloatRect bounds;
+	set<Collision*> collisions;
+	Collision();
+	virtual void beginCollision(Collision* other);
+	virtual void endCollision(Collision* other);
+};
+class CollisionSystem{
+public:
 
-	void setAll();
-	void tickCollision();
-	void stabilizeBall();
+	std::vector<Collision*> colliders;
+
+	static CollisionSystem& getIntance();
+	void tick();
 
 };
 #endif // !_collisionSystem

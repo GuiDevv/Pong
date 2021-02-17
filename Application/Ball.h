@@ -1,15 +1,15 @@
 #pragma once
+#ifndef _ball
+#define _ball
 #include "Vector.h"
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
-class Ball
-{
+class Ball {
 public:
 	Ball();
 
 	Vector pos, dir, posIni;
-	IntRect ballArea;
 	float speed;
 	double ace = 1.0007;
 	bool collision;
@@ -22,6 +22,8 @@ public:
 	void setInfo(float xInicial, float yInicial);
 	void BallReset();
 	void RandomSpeeds(float velocityX, float velocityY);
+	//void beginCollision(Collision* other);
+	//void endCollision(Collision* other);
 
 };
-
+#endif // !_ball

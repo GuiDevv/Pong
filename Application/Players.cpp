@@ -66,6 +66,12 @@ void Players::setInfo(Gamemode& g)
 void Players::spriteAccess(int skill, int typeAccess, int icon)
 {
 }
+void Players::beginCollision()
+{
+}
+void Players::endCollision()
+{
+}
 void Players::tickPlayer()
 {			
 	if (time.hasEnded() && activeBoost == true)

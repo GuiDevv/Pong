@@ -18,10 +18,10 @@ void Gamemode::loadInfo()
 	
 	SpectralBone1 = IntRect(0, 277, 80, 250);
 	SpectralBone2 = IntRect(1320, 277, 80, 250);
-	collisions = new CollisionSystem;
-	collisions->gm = this;
+	//collisions = new CollisionSystem;
+	//collisions->gm = this;
 
-	collisions->setAll();
+	//collisions->setAll();
 	textures["player1"].loadFromFile("Assets\\skull1.png");
 	textures["player2"].loadFromFile("Assets\\skull2.png");
 	textures["wall1"].loadFromFile("Assets\\wall1.png");
@@ -224,7 +224,7 @@ void Gamemode::tradeMode(string m)
 
 void Gamemode::ticksControl()
 {
-	collisions->tickCollision();	
+	/*collisions->tickCollision();*/	
 	player1->tickPlayer();
 	player2->tickPlayer();
 	ball.tickBall();
