@@ -8,33 +8,7 @@
 //
 //void CollisionSystem::tickCollision()
 //{
-//	if (gm->player1->playerArea.intersects(gm->ball.ballArea))
-//	{
-//		gm->ball.dir.getVector() = gm->player1->dir.getVector() + gm->ball.dir.getVector();
-//		stabilizeBall();
-//		gm->ball.color = 2;
-//		if (gm->player1->activeBoost)
-//			gm->ball.ace = 1.0004;
-//		else
-//			gm->ball.ace = 1.0007;
-//	}
-//	if (gm->player2->playerArea.intersects(gm->ball.ballArea))
-//	{
-//		gm->ball.dir.getVector() = gm->player2->dir.getVector() + gm->ball.dir.getVector();
-//		stabilizeBall();
-//		gm->ball.color = 2;
-//		if (gm->player2->activeBoost)
-//			gm->ball.ace = 1.0004;
-//		else
-//			gm->ball.ace = 1.0007;
-//	}
-//	if (gm->wall1.wall.intersects(gm->ball.ballArea) || gm->wall2.wall.intersects(gm->ball.ballArea) || gm->wall3.wall.intersects(gm->ball.ballArea) || gm->wall4.wall.intersects(gm->ball.ballArea))
-//	{
-//		if (gm->ball.dir. x < 0)
-//			gm->ball.pos.x = gm->ball.pos.x + 30;
-//		if (gm->ball.dir.x > 0)
-//			gm->ball.pos.x = gm->ball.pos.x - 30;
-//			gm->ball.dir.x = gm->ball.dir.x * -1; // <---------------
+//	
 //	}
 //	/*if (spectralBone1->intersects(gm->ball.ballArea) && gm->player1->skills->skill3->usingPower)
 //	{
@@ -79,14 +53,14 @@ CollisionSystem& CollisionSystem::getIntance()
 
 void CollisionSystem::tick()
 {
-	/*for (size_t x = 0; x < colliders.size(); x++)
+	for (size_t x = 0; x < colliders.size(); x++)
 	{
 		for (size_t y = x + 1; y < colliders.size(); y++)
 		{
 			Collision* a = colliders[x];
 			Collision* b = colliders[y];
 
-			if (a->collisions.count(b))
+			if (a->collisions.count(b) == 0)
 			{
 				if (a->bounds.intersects(b->bounds))
 				{
@@ -107,12 +81,12 @@ void CollisionSystem::tick()
 				}
 			}
 		}
-	}*/
+	}
 }
 
 Collision::Collision()
 {
-	auto c = CollisionSystem::getIntance();
+	auto& c = CollisionSystem::getIntance();
 	c.colliders.push_back(this);
 }
 
@@ -123,3 +97,5 @@ void Collision::beginCollision(Collision* other)
 void Collision::endCollision(Collision* other)
 {
 }
+
+//reinterpret_cast

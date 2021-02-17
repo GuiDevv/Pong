@@ -1,7 +1,9 @@
 #include "Gamemode.h"
 
-Gamemode::Gamemode()
+Gamemode::Gamemode() :
+	collisions(CollisionSystem::getIntance())
 {
+	
 	srand(time(0));
 }
 
@@ -18,10 +20,7 @@ void Gamemode::loadInfo()
 	
 	SpectralBone1 = IntRect(0, 277, 80, 250);
 	SpectralBone2 = IntRect(1320, 277, 80, 250);
-	//collisions = new CollisionSystem;
-	//collisions->gm = this;
 
-	//collisions->setAll();
 	textures["player1"].loadFromFile("Assets\\skull1.png");
 	textures["player2"].loadFromFile("Assets\\skull2.png");
 	textures["wall1"].loadFromFile("Assets\\wall1.png");
@@ -81,8 +80,8 @@ void Gamemode::loadInfo()
 	sprites["spriteDivision2"].setTexture(textures["division2"]);
 	sprites["spriteDivision3"].setTexture(textures["division3"]);
 
-	tradeMode("Singleplayer");
-	//tradeMode("Multiplayer");
+	/*tradeMode("Singleplayer");*/
+	tradeMode("Multiplayer");
 
 	fonts["font1"].loadFromFile("Assets\\impact-1.ttf");	
 
@@ -224,7 +223,7 @@ void Gamemode::tradeMode(string m)
 
 void Gamemode::ticksControl()
 {
-	/*collisions->tickCollision();*/	
+	collisions.tick();
 	player1->tickPlayer();
 	player2->tickPlayer();
 	ball.tickBall();

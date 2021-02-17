@@ -10,6 +10,7 @@
 #include "Skills.h"
 #include "Controllers.h"
 #include "Vector.h"
+#include "CollisionSystem.h"
 #include "Wall.h"
 #include <Windows.h>
 
@@ -23,7 +24,7 @@ class Gamemode
 {
 public:
 	Gamemode();
-	class CollisionSystem* collisions;
+	class CollisionSystem& collisions;
 	map<string, Texture> textures;
 	map<string, Sprite> sprites;
 	map<string, Font> fonts;

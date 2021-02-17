@@ -4,14 +4,14 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <vector>
-using namespace std;
-using namespace sf;
+#include <Windows.h>
+
 class Collision
 {
 public:
 
-	FloatRect bounds;
-	set<Collision*> collisions;
+	sf::IntRect bounds;
+	std::set<Collision*> collisions;
 	Collision();
 	virtual void beginCollision(Collision* other);
 	virtual void endCollision(Collision* other);

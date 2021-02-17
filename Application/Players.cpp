@@ -84,6 +84,7 @@ void Players::tickPlayer()
 	dir.y = 0;
 	playerArea.left = pos.x;
 	playerArea.top = pos.y;
+	bounds = playerArea;
 }
 void Players::handleInput(Vector v)
 {
@@ -121,6 +122,7 @@ void PlayerBlue::setInfo(Gamemode& g)
 	skills->controlledPlayer = this;
 	skills->setSkillsGamemode();
 	playerArea = IntRect(pos.x, pos.y, 100, 104);
+
 }
 void PlayerBlue::spriteAccess(int skill, int typeAccess, int icon)
 {
@@ -177,6 +179,7 @@ void PlayerRed::setInfo(Gamemode& g)
 	skills->controlledPlayer = this;
 	skills->setSkillsGamemode();
 	playerArea = IntRect(pos.x, pos.y, 100, 104);
+	
 
 }
 void PlayerRed::spriteAccess(int skill, int typeAccess, int icon)

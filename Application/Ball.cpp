@@ -1,11 +1,5 @@
 #include "Ball.h"
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
-#include <ctime>
-#include <vector>
 #include "Players.h"
-#include "Ball.h"
-#include <math.h>
 
 Ball::Ball()
 {
@@ -54,13 +48,16 @@ void Ball::tickBall()
 
 	ballArea.left = pos.getVector().x;
 	ballArea.top = pos.getVector().y;
+	if (pos.y < 0 || pos.y > 800)
+		dir.y *= -1;
+	bounds = ballArea;
 
 }
 
 void Ball::setInfo(float xInicial, float yInicial)
 {
 	posIni = { xInicial, yInicial };
-	ballArea = IntRect(pos.getVector().x, pos.getVector().y, 30, 34);
+	ballArea = sf::IntRect(pos.getVector().x, pos.getVector().y, 30, 34);	
 }
 
 void Ball::BallReset()
@@ -70,6 +67,7 @@ void Ball::BallReset()
 	color = 1;
 	dir.x = 0;
 	dir.y = 0;
+	dir = Vector(1, 0.2);
 	collision = true;
 }
 
@@ -88,43 +86,45 @@ void Ball::RandomSpeeds(float velocityX, float velocityY)
 	}
 }
 
+void Ball::beginCollision(Collision* other)
+{
+	Players* p = reinterpret_cast<Players*>(other);
+	Wall* w = reinterpret_cast<Wall*>(other);
+	if (p) 
+	{
+		if (p->dir.x != 0 || p->dir.y != 0)
+		{
+			dir.getVector() = p->dir.getVector() + p->dir.getVector();
+			stabilize();
+			color = 2;
+			if (p->activeBoost)
+				ace = 1.0004;
+			else
+				ace = 1.0007;
+		}
+	}
+	if (w)
+	{
+		if (dir.x < 0)
+			pos.x = pos.x + 20;
+		if (dir.x > 0)
+			pos.x = pos.x - 20;
+	}
 
-//struct A {
-//	int a;
-//	float b;
-//};
-//
-//A* find(vector<A*> vec, bool(*fnx)(A*)) {
-//	for (auto& a : vec) {
-//		if (fnx(a))
-//			return a;
-//	}
-//}
+}
 
+void Ball::endCollision(Collision* other)
+{
+}
 
-//void Ball::beginCollision(Collision* other)
-//{
-//	if (dir.x < 0)
-//		pos.x = pos.x + 30;
-//	if (dir.x > 0)
-//		pos.x = pos.x - 30;
-//		dir.x = dir.x * -1; 
-//	/*vector<A*> vec;
-//	find(vec, [](A* w)->bool {
-//		return w->a == 1;
-//		}
-//	);
-//	find(vec, [](A* w)->bool {
-//		return w->b == 1;
-//		}
-//	);
-//
-//	cast 
-//	reinterpret_cast<>();
-//	const_cast<>();
-//	cast*/
-//}
-//
-//void Ball::endCollision(Collision* other)
-//{
-//}
+void Ball::stabilize()
+{
+	if (dir.y > 1)
+		dir.y = 1;
+	if (dir.y < -1)
+		dir.y = -1;
+	if (dir.x > 1)
+		dir.x = 1;
+	if (dir.x < -1)
+		dir.x = -1;
+}

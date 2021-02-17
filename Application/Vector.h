@@ -1,22 +1,21 @@
 #pragma once
 #ifndef _vector
 #define _vector
-
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <math.h>
-using namespace sf;
+
 const float pi = 3.14159265358979323846;
 const float piRad = 180.f / 3.14159265358979323846;
 class Vector {
-    Vector2f _vec;
+    sf::Vector2f _vec;
 public:
     float &x, &y;
     Vector() :
         _vec(0, 0),
         x(_vec.x),
         y(_vec.y) {}
-    Vector(Vector2f vec) :
+    Vector(sf::Vector2f vec) :
         _vec(vec),
         x(_vec.x),
         y(_vec.y) {}
@@ -68,7 +67,7 @@ public:
         return v;
     }
 
-    Vector2f& getVector() {
+    sf::Vector2f& getVector() {
         return _vec;
     }
     float length() {

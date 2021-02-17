@@ -5,10 +5,9 @@
 #include "Timer.h"
 #include "Vector.h"
 #include "SkillSystem.h"
+#include "CollisionSystem.h"
 
-using namespace sf;
-
-class Players /*: public Collision*/
+class Players : public Collision
 {
 public:
 	
@@ -18,7 +17,6 @@ public:
 	Vector pos, posBackup, dir;
 	float speed, speedInicial, boostValue, limitDown, limitUp, limitLeft, limitRight, color;
 	class SkillSystem *skills;	
-	class Collision* collision;
 	class Players* playerInimigo;
 	IntRect playerArea;
 
