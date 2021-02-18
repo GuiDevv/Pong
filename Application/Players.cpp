@@ -66,10 +66,11 @@ void Players::setInfo(Gamemode& g)
 void Players::spriteAccess(int skill, int typeAccess, int icon)
 {
 }
-void Players::beginCollision()
+void Players::beginCollision(Collision* other)
 {
+	gm->ball.color = color;
 }
-void Players::endCollision()
+void Players::endCollision(Collision* other)
 {
 }
 void Players::tickPlayer()
@@ -113,6 +114,7 @@ void PlayerBlue::setInfo(Gamemode& g)
 	pos.x = posBackup.x;
 	pos.y = posBackup.y;
 	speed = speedInicial;
+	color = 2;
 	limitUp = 0;
 	limitDown = 700;
 	limitLeft = 75;
@@ -170,6 +172,7 @@ void PlayerRed::setInfo(Gamemode& g)
 	pos.x = posBackup.x;
 	pos.y = posBackup.y;
 	speed = speedInicial;
+	color = 3;
 	limitUp = 0;
 	limitDown = 700;
 	limitLeft = 700;

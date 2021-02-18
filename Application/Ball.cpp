@@ -90,13 +90,14 @@ void Ball::beginCollision(Collision* other)
 {
 	Players* p = reinterpret_cast<Players*>(other);
 	Wall* w = reinterpret_cast<Wall*>(other);
+	/*SpectralWall* sw = reinterpret_cast<SpectralWall*>(other);*/
+
 	if (p) 
 	{
 		if (p->dir.x != 0 || p->dir.y != 0)
 		{
 			dir.getVector() = p->dir.getVector() + p->dir.getVector();
 			stabilize();
-			color = 2;
 			if (p->activeBoost)
 				ace = 1.0004;
 			else
@@ -109,7 +110,16 @@ void Ball::beginCollision(Collision* other)
 			pos.x = pos.x + 20;
 		if (dir.x > 0)
 			pos.x = pos.x - 20;
+		dir.x = dir.x * -1;
 	}
+	/*if (sw)
+	{
+		if (dir.x < 0)
+			pos.x = pos.x + 20;
+		if (dir.x > 0)
+			pos.x = pos.x - 20;
+		dir.x = dir.x * -1;
+	}*/
 
 }
 

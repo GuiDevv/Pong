@@ -17,9 +17,6 @@ void Gamemode::loadInfo()
 	player2->playerInimigo = player1;
 	ball.setInfo(675, 370);
 	ball.color = 1;	
-	
-	SpectralBone1 = IntRect(0, 277, 80, 250);
-	SpectralBone2 = IntRect(1320, 277, 80, 250);
 
 	textures["player1"].loadFromFile("Assets\\skull1.png");
 	textures["player2"].loadFromFile("Assets\\skull2.png");
@@ -97,6 +94,8 @@ void Gamemode::loadInfo()
 	wall2.setInfo(sprites["spriteWall2"], Vector(0, 530), IntRect(0, 530, 80, 273));
 	wall3.setInfo(sprites["spriteWall3"], Vector(1320, 0), IntRect(1320, 0, 80, 273));
 	wall4.setInfo(sprites["spriteWall4"], Vector(1320, 530), IntRect(1320, 530, 80, 273));
+	SpectralBone1.setInfo(sprites["spriteBone1"], Vector(0, 277), IntRect(0, 277, 80, 250));
+	SpectralBone2.setInfo(sprites["spriteBone2"], Vector(1320, 277), IntRect(1320, 277, 80, 250));
 }
 
 void Gamemode::drawAll(RenderWindow &window)

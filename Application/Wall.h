@@ -12,7 +12,15 @@ public:
 	sf::Sprite* sprite;
 
 	void setInfo(sf::Sprite& spr, Vector p, sf::IntRect w);
-	void beginCollision();
-	void endCollision();
+	void beginCollision(Collision* other);
+	void endCollision(Collision* other);
+};
+
+class SpectralWall : public Wall
+{
+public:
+
+	bool isEnable = false;
+
 };
 

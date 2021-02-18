@@ -8,10 +8,11 @@ void Wall::setInfo(sf::Sprite& spr, Vector p, sf::IntRect w)
 	bounds = wall;
 }
 
-void Wall::beginCollision()
+void Wall::beginCollision(Collision* other)
 {
 }
 
-void Wall::endCollision()
+void Wall::endCollision(Collision* other)
 {
 }
+

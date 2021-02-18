@@ -33,8 +33,8 @@ public:
 	void UseSkill3();
 	virtual void setInfo(Gamemode& g);
 	virtual void spriteAccess(int skill, int typeAccess, int icon);
-	void beginCollision();
-	void endCollision();
+	virtual void beginCollision(Collision* other);
+	void endCollision(Collision* other);
 };
 
 class PlayerBlue : public Players
