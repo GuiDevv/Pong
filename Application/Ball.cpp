@@ -86,17 +86,17 @@ void Ball::RandomSpeeds(float velocityX, float velocityY)
 	}
 }
 
-void Ball::beginCollision(Collision* other)
+void Ball::beginCollision(Collision* other) // Arrumar o disable do spectral
 {
-	Players* p = reinterpret_cast<Players*>(other);
-	Wall* w = reinterpret_cast<Wall*>(other);
-	/*SpectralWall* sw = reinterpret_cast<SpectralWall*>(other);*/
+	Players* p = dynamic_cast<Players*>(other);
+	Wall* w = dynamic_cast<Wall*>(other);
+	SpectralWall* sw = dynamic_cast<SpectralWall*>(other);
 
 	if (p) 
 	{
-		if (p->dir.x != 0 || p->dir.y != 0)
+		if (p->dir.y != 0 || p->dir.x != 0)
 		{
-			dir.getVector() = p->dir.getVector() + p->dir.getVector();
+			dir.getVector() = dir.getVector() + p->dir.getVector();
 			stabilize();
 			if (p->activeBoost)
 				ace = 1.0004;
@@ -112,14 +112,14 @@ void Ball::beginCollision(Collision* other)
 			pos.x = pos.x - 20;
 		dir.x = dir.x * -1;
 	}
-	/*if (sw)
+	if (sw && sw->isEnable)
 	{
 		if (dir.x < 0)
 			pos.x = pos.x + 20;
 		if (dir.x > 0)
 			pos.x = pos.x - 20;
 		dir.x = dir.x * -1;
-	}*/
+	}
 
 }
 

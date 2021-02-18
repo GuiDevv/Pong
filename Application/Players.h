@@ -4,6 +4,7 @@
 #define _player
 #include "Timer.h"
 #include "Vector.h"
+#include "Wall.h"
 #include "SkillSystem.h"
 #include "CollisionSystem.h"
 
@@ -16,8 +17,10 @@ public:
 	bool activeBoost, playerEnable = true;
 	Vector pos, posBackup, dir;
 	float speed, speedInicial, boostValue, limitDown, limitUp, limitLeft, limitRight, color;
-	class SkillSystem *skills;	
+	class SkillSystem *skills;
+	class SpectralWall* spectralWall;
 	class Players* playerInimigo;
+
 	IntRect playerArea;
 
 	void Down();

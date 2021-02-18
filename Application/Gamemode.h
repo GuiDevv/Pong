@@ -31,7 +31,7 @@ public:
 	map<string, Controllers*> controllers;	
 	Players *player1, *player2;
 	Wall wall1, wall2, wall3, wall4;
-	SpectralWall SpectralBone1, SpectralBone2;
+	SpectralWall *SpectralBone1, *SpectralBone2;
 	Ball ball;
 	int winsPlayer1, winsPlayer2;
 	Text text;

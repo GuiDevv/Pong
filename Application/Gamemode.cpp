@@ -14,7 +14,7 @@ void Gamemode::loadInfo()
 	player2 = new PlayerRed();
 	player2->setInfo(*this);
 	player1->playerInimigo = player2;
-	player2->playerInimigo = player1;
+	player2->playerInimigo = player1;	
 	ball.setInfo(675, 370);
 	ball.color = 1;	
 
@@ -94,8 +94,12 @@ void Gamemode::loadInfo()
 	wall2.setInfo(sprites["spriteWall2"], Vector(0, 530), IntRect(0, 530, 80, 273));
 	wall3.setInfo(sprites["spriteWall3"], Vector(1320, 0), IntRect(1320, 0, 80, 273));
 	wall4.setInfo(sprites["spriteWall4"], Vector(1320, 530), IntRect(1320, 530, 80, 273));
+	SpectralBone1 = new SpectralWall();
+	SpectralBone2 = new SpectralWall();
 	SpectralBone1.setInfo(sprites["spriteBone1"], Vector(0, 277), IntRect(0, 277, 80, 250));
 	SpectralBone2.setInfo(sprites["spriteBone2"], Vector(1320, 277), IntRect(1320, 277, 80, 250));
+	player1->spectralWall = SpectralBone1;
+	player2->spectralWall = SpectralBone2;
 }
 
 void Gamemode::drawAll(RenderWindow &window)
