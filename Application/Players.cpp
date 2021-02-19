@@ -124,7 +124,7 @@ void PlayerBlue::setInfo(Gamemode& g)
 	skills->controlledPlayer = this;
 	skills->setSkillsGamemode();
 	playerArea = IntRect(pos.x, pos.y, 100, 104);
-
+	spectralWall = gm->SpectralBone1;
 }
 void PlayerBlue::spriteAccess(int skill, int typeAccess, int icon)
 {
@@ -182,7 +182,7 @@ void PlayerRed::setInfo(Gamemode& g)
 	skills->controlledPlayer = this;
 	skills->setSkillsGamemode();
 	playerArea = IntRect(pos.x, pos.y, 100, 104);
-	
+	spectralWall = gm->SpectralBone2;
 
 }
 void PlayerRed::spriteAccess(int skill, int typeAccess, int icon)

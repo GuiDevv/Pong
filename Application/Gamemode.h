@@ -37,6 +37,7 @@ public:
 	Text text;
 	bool trava;	
 	bool travaPower = false, travaPower2 = false;
+	/*Limits limitUp, limitDown, limitRight, limitLeft;*/
 
 	void loadInfo();
 	void drawAll(RenderWindow &window);

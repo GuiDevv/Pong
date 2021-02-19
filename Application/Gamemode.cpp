@@ -1,9 +1,7 @@
 #include "Gamemode.h"
 
-Gamemode::Gamemode() :
-	collisions(CollisionSystem::getIntance())
-{
-	
+Gamemode::Gamemode() :	collisions(CollisionSystem::getIntance())
+{	
 	srand(time(0));
 }
 
@@ -17,6 +15,10 @@ void Gamemode::loadInfo()
 	player2->playerInimigo = player1;	
 	ball.setInfo(675, 370);
 	ball.color = 1;	
+	/*limitUp.setLimit(IntRect(0, -10, 1400, 10));
+	limitDown.setLimit(IntRect(0, 800, 1400, 10));
+	limitLeft.setLimit(IntRect(70, 0, 10, 800));
+	limitRight.setLimit(IntRect(1325, 0, 10, 800));*/
 
 	textures["player1"].loadFromFile("Assets\\skull1.png");
 	textures["player2"].loadFromFile("Assets\\skull2.png");
@@ -94,10 +96,10 @@ void Gamemode::loadInfo()
 	wall2.setInfo(sprites["spriteWall2"], Vector(0, 530), IntRect(0, 530, 80, 273));
 	wall3.setInfo(sprites["spriteWall3"], Vector(1320, 0), IntRect(1320, 0, 80, 273));
 	wall4.setInfo(sprites["spriteWall4"], Vector(1320, 530), IntRect(1320, 530, 80, 273));
-	SpectralBone1 = new SpectralWall();
-	SpectralBone2 = new SpectralWall();
-	SpectralBone1.setInfo(sprites["spriteBone1"], Vector(0, 277), IntRect(0, 277, 80, 250));
-	SpectralBone2.setInfo(sprites["spriteBone2"], Vector(1320, 277), IntRect(1320, 277, 80, 250));
+	SpectralBone1 = new SpectralWall;
+	SpectralBone2 = new SpectralWall;
+	SpectralBone1->setInfo(sprites["spriteBone1"], Vector(0, 277), IntRect(0, 277, 80, 250));
+	SpectralBone2->setInfo(sprites["spriteBone2"], Vector(1320, 277), IntRect(1320, 277, 80, 250));
 	player1->spectralWall = SpectralBone1;
 	player2->spectralWall = SpectralBone2;
 }
@@ -163,9 +165,9 @@ void Gamemode::controlGame()
 {
 	ticksControl();
 
-	if (ball.pos.getVector().x > 1320)
+	if (ball.pos.getVector().x > 1340)
 		givePoints(0);
-	if (ball.pos.getVector().x < 20)
+	if (ball.pos.getVector().x < 0)
 		givePoints(1);
 	if (ball.pos.getVector().x > 780)
 		trava = 1;	

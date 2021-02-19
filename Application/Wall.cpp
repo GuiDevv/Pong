@@ -31,3 +31,16 @@ void SpectralWall::beginCollision(Collision* other)
 void SpectralWall::endCollision(Collision* other)
 {
 }
+
+void Limits::setLimit(sf::IntRect l)
+{
+	limit = l;
+}
+
+void Limits::beginCollision(Collision* other)
+{
+}
+
+void Limits::endCollision(Collision* other)
+{
+}

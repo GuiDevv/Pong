@@ -101,6 +101,7 @@ void Vortex::ActivePowerUp()
 	cooldownActive = true;
 	usingPower = true;
 	activeSkill = true;
+	player->spectralWall->isEnable = true;
 	player->spriteAccess(3, 0, 0);
 	spectralShield.start(10);
 }
@@ -108,6 +109,7 @@ void Vortex::RemovePowerUp()
 {
 	usingPower = false;
 	player->spriteAccess(3, 1, -1);
+	player->spectralWall->isEnable = false;
 }
 void Vortex::tickPower()
 {

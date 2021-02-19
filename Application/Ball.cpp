@@ -67,7 +67,6 @@ void Ball::BallReset()
 	color = 1;
 	dir.x = 0;
 	dir.y = 0;
-	dir = Vector(1, 0.2);
 	collision = true;
 }
 

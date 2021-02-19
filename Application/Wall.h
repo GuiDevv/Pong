@@ -29,3 +29,13 @@ public:
 	void endCollision(Collision* other);
 };
 
+class Limits : public Collision
+{
+public:
+
+	sf::IntRect limit;
+
+	void setLimit(sf::IntRect l);
+	void beginCollision(Collision* other);
+	void endCollision(Collision* other);
+};
