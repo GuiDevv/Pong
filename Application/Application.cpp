@@ -1,6 +1,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "Gamemode.h"
+#include "Screens.h"
 #include <iostream>
 #include <list>
 
@@ -9,10 +10,10 @@ using namespace sf;
 
 int main(){
 
-    RenderWindow window(VideoMode(1400, 800), "SFML window");
-    
+    RenderWindow window(VideoMode(1400, 800), "Air Hockey");
+    Screens screen;
     Gamemode gamemode;
-    gamemode.loadInfo();
+    screen.loadAssets(gamemode);
 
     // Start the game loop
     while (window.isOpen())
@@ -28,11 +29,14 @@ int main(){
         // Clear screen
         window.clear();
         // Draw the sprite
-        gamemode.drawAll(window);
-        gamemode.controlGame();        
+        
+        screen.screenDraw(window); 
      
         // Update the window
         window.display();
     }
     return EXIT_SUCCESS;
 }
+
+
+

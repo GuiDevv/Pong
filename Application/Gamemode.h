@@ -36,7 +36,7 @@ public:
 	int winsPlayer1, winsPlayer2;
 	Text text;
 	bool trava;	
-	bool travaPower = false, travaPower2 = false;
+	bool travaPower = false, travaPower2 = false, multiplayer;
 	/*Limits limitUp, limitDown, limitRight, limitLeft;*/
 
 	void loadInfo();

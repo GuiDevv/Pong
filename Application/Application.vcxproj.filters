@@ -12,6 +12,7 @@
     <ClCompile Include="SkillSystem.cpp" />
     <ClCompile Include="Skills.cpp" />
     <ClCompile Include="Wall.cpp" />
+    <ClCompile Include="Screens.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
@@ -24,6 +25,7 @@
     <ClInclude Include="SkillSystem.h" />
     <ClInclude Include="Skills.h" />
     <ClInclude Include="Wall.h" />
+    <ClInclude Include="Screens.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
